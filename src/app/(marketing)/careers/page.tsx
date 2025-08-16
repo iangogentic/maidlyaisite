@@ -1,424 +1,320 @@
-import { constructMetadata } from "@/lib/seo";
-import { Section } from "@/components/marketing/section";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Code, 
-  Palette, 
-  Brain, 
-  BarChart3, 
-  Rocket, 
-  Users, 
-  MapPin, 
-  Clock,
-  CheckCircle,
-  ArrowRight,
-  Sparkles,
-  Zap
-} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Section } from "@/components/marketing/section";
+import { constructMetadata } from "@/lib/seo";
+import { ArrowRight, Users, TrendingUp, Code, DollarSign, Zap, Target, Calendar } from "lucide-react";
 
 export const metadata = constructMetadata({
-  title: "Careers - Join the Build Team",
-  description: "Join Maidly.ai and build the future of AI-powered home services. Open internship tracks in AI/Agents, Full-stack, Design, and Data.",
+  title: "C-Suite Internships - Step Into Leadership | Maidly.ai",
+  description: "Skip years of ladder-climbing. Join Maidly.ai's C-Suite internships: COO, CMO, CTO/AI, and CFO tracks with equity and direct founder access.",
 });
-
-const tracks = [
-  {
-    icon: Brain,
-    title: "AI/Agents",
-    description: "Build intelligent systems that learn and remember customer preferences",
-    skills: ["Python", "LangChain", "RAG", "Vector DBs", "OpenAI API"],
-    projects: [
-      "Preference extraction from natural language",
-      "Crew briefing generation system",
-      "Feedback analysis pipeline",
-      "Memory consolidation algorithms",
-    ],
-    level: "Intermediate to Advanced",
-  },
-  {
-    icon: Code,
-    title: "Full-stack",
-    description: "Create seamless experiences from booking to post-service feedback",
-    skills: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Stripe"],
-    projects: [
-      "Customer dashboard with preference management",
-      "Crew mobile app for briefings",
-      "Real-time scheduling system",
-      "Payment and billing automation",
-    ],
-    level: "Beginner to Intermediate",
-  },
-  {
-    icon: Palette,
-    title: "Design/Brand",
-    description: "Shape the visual identity and user experience of AI-powered home services",
-    skills: ["Figma", "Design Systems", "User Research", "Prototyping", "Brand Strategy"],
-    projects: [
-      "Customer onboarding flow redesign",
-      "Crew mobile app UX",
-      "Brand identity evolution",
-      "Marketing website optimization",
-    ],
-    level: "Beginner to Intermediate",
-  },
-  {
-    icon: BarChart3,
-    title: "Data/Insights",
-    description: "Turn cleaning data into actionable insights for customers and operations",
-    skills: ["SQL", "Python", "Tableau", "Statistics", "A/B Testing"],
-    projects: [
-      "Customer satisfaction prediction model",
-      "Crew performance analytics dashboard",
-      "Pricing optimization analysis",
-      "Market expansion data modeling",
-    ],
-    level: "Intermediate",
-  },
-];
-
-const dayOneStarters = [
-  {
-    title: "Improve the Memory Ribbon UX",
-    description: "Make preference chips editable in-place with smooth animations",
-    track: "Full-stack",
-    difficulty: "Medium",
-    impact: "High",
-  },
-  {
-    title: "Build a Preference Extractor",
-    description: "Create regex + rules engine to turn feedback into structured preferences",
-    track: "AI/Agents",
-    difficulty: "Medium",
-    impact: "High",
-  },
-  {
-    title: "Design New KPI Visualizations",
-    description: "Add area charts for 'Preferences Learned' with micro-interactions",
-    track: "Design/Brand",
-    difficulty: "Easy",
-    impact: "Medium",
-  },
-  {
-    title: "Write Build Log #1",
-    description: "Document our AI memory system architecture for the engineering blog",
-    track: "Any",
-    difficulty: "Easy",
-    impact: "Medium",
-  },
-];
-
-const whyMaidly = [
-  {
-    icon: Users,
-    title: "Real Users, Real Impact",
-    description: "Your code serves actual families in Dallas. See immediate feedback and usage.",
-  },
-  {
-    icon: Zap,
-    title: "Ship Energy",
-    description: "We deploy daily. Your features go live fast, and you own the entire lifecycle.",
-  },
-  {
-    icon: Rocket,
-    title: "Ownership Culture",
-    description: "Lead projects from day one. No busy work—just meaningful contributions to our mission.",
-  },
-  {
-    icon: Sparkles,
-    title: "AI-First Mindset",
-    description: "Work with cutting-edge AI tools and build systems that get smarter over time.",
-  },
-];
-
-const perks = [
-  "Competitive internship stipend",
-  "Flexible remote + Dallas office",
-  "Latest MacBook Pro + setup budget",
-  "Mentorship from senior engineers",
-  "Full-time offer potential",
-  "Stock options for exceptional performers",
-];
 
 export default function CareersPage() {
   return (
     <>
       {/* Hero Section */}
-      <Section className="pt-24 pb-16 bg-gradient-to-b from-background to-muted/20">
-        <div className="text-center max-w-4xl mx-auto">
-          <Badge variant="secondary" className="mb-6">
-            <Rocket className="w-4 h-4 mr-2" />
-            Now Hiring - Internships
+      <Section className="py-16 lg:py-24">
+        <div className="max-w-4xl mx-auto text-center">
+          <Badge variant="outline" className="mb-6">
+            🚀 C-Suite Internships
           </Badge>
-          <h1 className="text-display-xl font-bold text-foreground mb-6 font-display">
-            Join the Build Team
+          <h1 className="text-display-lg font-bold text-foreground mb-6 font-display">
+            Step Into the C-Suite
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Build agents with real users. Ship memory, RAG, and ops automation to thousands of homes. Internship tracks open now.
+          <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+            Maidly.ai is offering internships where you don&apos;t just assist — you act like a Chief Officer. COO, CMO, CTO, CFO interns will lead functions, ship fast, and earn equity alongside the founder.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground group">
-              Apply Now
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            <Button size="lg" className="group">
+              Apply & Book Intro Call
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
-            <Button size="lg" variant="outline">
-              View Open Roles
+            <Button variant="outline" size="lg">
+              Explore Roles
             </Button>
           </div>
         </div>
       </Section>
 
-      {/* Tracks */}
-      <Section>
-        <div className="text-center mb-16">
-          <h2 className="text-display-md font-bold text-foreground mb-4 font-display">
-            Internship Tracks
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Choose your path and start building the future of AI-powered home services.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {tracks.map((track) => {
-            const Icon = track.icon;
-            return (
-              <Card key={track.title} className="border-2 hover:border-primary/20 transition-colors">
-                <CardHeader>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <Icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-xl">{track.title}</CardTitle>
-                      <Badge variant="outline" className="mt-1">
-                        {track.level}
-                      </Badge>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <p className="text-muted-foreground">{track.description}</p>
-                  
-                  <div>
-                    <h4 className="font-semibold mb-2">Tech Stack:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {track.skills.map((skill) => (
-                        <Badge key={skill} variant="secondary" className="text-xs">
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold mb-2">Sample Projects:</h4>
-                    <ul className="space-y-1">
-                      {track.projects.map((project) => (
-                        <li key={project} className="text-sm text-muted-foreground flex items-start">
-                          <CheckCircle className="w-3 h-3 text-primary mr-2 mt-1 flex-shrink-0" />
-                          {project}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-      </Section>
-
-      {/* Day-1 Starter Tasks */}
+      {/* The Roles */}
       <Section className="bg-muted/20">
-        <div className="text-center mb-16">
-          <h2 className="text-display-md font-bold text-foreground mb-4 font-display">
-            Day-1 Starter Tasks
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Hit the ground running with these real projects that ship to production.
-          </p>
-        </div>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-display-sm font-bold text-foreground mb-4 font-display">
+              The Roles
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Choose your C-level track and lead your own vertical with executive responsibility.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {dayOneStarters.map((task) => (
-            <Card key={task.title} className="hover:shadow-lg transition-shadow">
-              <CardContent className="pt-6">
-                <div className="flex items-start justify-between mb-3">
-                  <Badge variant="outline" className="text-xs">
-                    {task.track}
-                  </Badge>
-                  <div className="flex gap-2">
-                    <Badge 
-                      variant={task.difficulty === "Easy" ? "secondary" : task.difficulty === "Medium" ? "default" : "destructive"}
-                      className="text-xs"
-                    >
-                      {task.difficulty}
-                    </Badge>
-                    <Badge 
-                      variant={task.impact === "High" ? "default" : "secondary"}
-                      className="text-xs"
-                    >
-                      {task.impact} Impact
-                    </Badge>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* COO Intern */}
+            <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mb-4">
+                  <Users className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="font-semibold mb-2">{task.title}</h3>
-                <p className="text-sm text-muted-foreground">{task.description}</p>
+                <CardTitle>COO Intern (Chief of Ops)</CardTitle>
+                <p className="text-sm text-primary font-medium">Be the engine that keeps Maidly running.</p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">
+                  Run customer ops and service systems. Design routing, crew dashboards, and process automation.
+                </p>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  <li>• Service routing optimization</li>
+                  <li>• Crew dashboard design</li>
+                  <li>• Process automation systems</li>
+                  <li>• Customer success workflows</li>
+                </ul>
               </CardContent>
             </Card>
-          ))}
-        </div>
-      </Section>
 
-      {/* Why Maidly */}
-      <Section>
-        <div className="text-center mb-16">
-          <h2 className="text-display-md font-bold text-foreground mb-4 font-display">
-            Why Maidly?
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We're not just another startup. We're building something that matters, with a team that ships.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {whyMaidly.map((reason) => {
-            const Icon = reason.icon;
-            return (
-              <Card key={reason.title} className="text-center">
-                <CardContent className="pt-6">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="font-semibold mb-2">{reason.title}</h3>
-                  <p className="text-sm text-muted-foreground">{reason.description}</p>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-      </Section>
-
-      {/* Ship Energy Timeline */}
-      <Section className="bg-muted/20">
-        <div className="text-center mb-16">
-          <h2 className="text-display-md font-bold text-foreground mb-4 font-display">
-            Ship Energy Timeline
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            See how fast we move from idea to production.
-          </p>
-        </div>
-
-        <div className="max-w-4xl mx-auto">
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-primary/20 rounded-full" />
-            
-            <div className="space-y-8">
-              {[
-                { day: "Week 1", title: "Memory Ribbon v1", description: "Interactive preference chips with add/remove" },
-                { day: "Week 2", title: "Crew Briefing System", description: "AI-generated cleaning instructions from preferences" },
-                { day: "Week 3", title: "Feedback Loop", description: "Customer feedback automatically updates preferences" },
-                { day: "Week 4", title: "Analytics Dashboard", description: "Real-time KPIs and satisfaction tracking" },
-              ].map((milestone, index) => (
-                <div key={milestone.day} className="relative flex items-center">
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 order-2'}`}>
-                    <Card>
-                      <CardContent className="pt-4">
-                        <Badge variant="outline" className="mb-2">
-                          {milestone.day}
-                        </Badge>
-                        <h3 className="font-semibold">{milestone.title}</h3>
-                        <p className="text-sm text-muted-foreground">{milestone.description}</p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background" />
+            {/* CMO Intern */}
+            <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mb-4">
+                  <TrendingUp className="w-6 h-6 text-primary" />
                 </div>
-              ))}
+                <CardTitle>CMO Intern (Chief of Marketing)</CardTitle>
+                <p className="text-sm text-primary font-medium">Turn Maidly into a household name.</p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">
+                  Own growth: ads, content, and brand. Craft campaigns that attract both customers and talent.
+                </p>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  <li>• Digital ad campaigns</li>
+                  <li>• Content creation & social media</li>
+                  <li>• Brand positioning & messaging</li>
+                  <li>• Customer acquisition funnels</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            {/* CTO/AI Intern */}
+            <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mb-4">
+                  <Code className="w-6 h-6 text-primary" />
+                </div>
+                <CardTitle>CTO/AI Intern (Chief of Technology)</CardTitle>
+                <p className="text-sm text-primary font-medium">Build the brain of Maidly.ai.</p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">
+                  Build the &quot;AI Maid&quot; memory system. RAG, chat, preference extraction, and demo platform.
+                </p>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  <li>• RAG system implementation</li>
+                  <li>• AI chat interfaces</li>
+                  <li>• Preference extraction algorithms</li>
+                  <li>• Demo platform development</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            {/* CFO Intern */}
+            <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mb-4">
+                  <DollarSign className="w-6 h-6 text-primary" />
+                </div>
+                <CardTitle>CFO Intern (Chief of Finance)</CardTitle>
+                <p className="text-sm text-primary font-medium">Shape Maidly&apos;s financial future.</p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">
+                  Create pricing models, financial forecasts, and investor decks. Show how AI gives valuation upside.
+                </p>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  <li>• Pricing model optimization</li>
+                  <li>• Financial forecasting</li>
+                  <li>• Investor deck creation</li>
+                  <li>• Unit economics analysis</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </Section>
+
+      {/* What Makes This Different */}
+      <Section>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-display-sm font-bold text-foreground mb-4 font-display">
+              What Makes This Different
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mb-4 mx-auto">
+                <Zap className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">C-level simulation</h3>
+              <p className="text-muted-foreground text-sm">
+                Lead your own vertical with executive responsibility.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mb-4 mx-auto">
+                <Target className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">Direct founder access</h3>
+              <p className="text-muted-foreground text-sm">
+                Weekly strategy calls, daily async feedback.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mb-4 mx-auto">
+                <DollarSign className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">Equity awards</h3>
+              <p className="text-muted-foreground text-sm">
+                Earn ownership for hitting milestones.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mb-4 mx-auto">
+                <Users className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">Real customers</h3>
+              <p className="text-muted-foreground text-sm">
+                Your work powers our Dallas beta.
+              </p>
             </div>
           </div>
         </div>
       </Section>
 
-      {/* Perks & Benefits */}
-      <Section>
+      {/* Week 1 Preview */}
+      <Section className="bg-muted/20">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-display-md font-bold text-foreground mb-4 font-display">
-              Perks & Benefits
+            <h2 className="text-display-sm font-bold text-foreground mb-4 font-display">
+              Week 1 Preview
             </h2>
             <p className="text-lg text-muted-foreground">
-              We invest in our team because great people build great products.
+              Hit the ground running from day one.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <MapPin className="w-5 h-5 mr-2 text-primary" />
-                  Location & Setup
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {perks.slice(0, 3).map((perk) => (
-                    <li key={perk} className="flex items-center text-sm">
-                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                      {perk}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+          <div className="space-y-8">
+            {/* Step 1 */}
+            <div className="flex items-start space-x-4">
+              <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-full text-primary-foreground font-semibold text-sm">
+                1
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground mb-2">Run the repo & demo locally</h3>
+                <p className="text-muted-foreground">
+                  Get the full Maidly.ai stack running on your machine and understand how the AI memory system works.
+                </p>
+              </div>
+            </div>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Clock className="w-5 h-5 mr-2 text-primary" />
-                  Growth & Future
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {perks.slice(3).map((perk) => (
-                    <li key={perk} className="flex items-center text-sm">
-                      <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                      {perk}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+            {/* Step 2 */}
+            <div className="flex items-start space-x-4">
+              <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-full text-primary-foreground font-semibold text-sm">
+                2
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground mb-2">Pick your milestone</h3>
+                <p className="text-muted-foreground">
+                  Choose your first deliverable: ops flow, ad test, AI feature, or pricing model.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="flex items-start space-x-4">
+              <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-full text-primary-foreground font-semibold text-sm">
+                3
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground mb-2">Ship your first deliverable</h3>
+                <p className="text-muted-foreground">
+                  Build, test, and deploy something real that impacts customers or the business.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="flex items-start space-x-4">
+              <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-full text-primary-foreground font-semibold text-sm">
+                4
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground mb-2">Demo it to the founder Friday</h3>
+                <p className="text-muted-foreground">
+                  Present your work, get feedback, and plan your next milestone.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </Section>
 
-      {/* CTA */}
-      <Section className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5">
-        <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-display-sm font-bold text-foreground mb-4 font-display">
-            Ready to build the future?
+      {/* Apply Section */}
+      <Section>
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-display-sm font-bold text-foreground mb-6 font-display">
+            Apply Section
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Join our team and help create AI-powered home services that millions of families will love.
+            Ready to start your career in the C-suite? Fill out our 1-minute form and book your intro call.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground group">
-              Apply for Internship
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button size="lg" variant="outline">
-              Join Our Discord
+          
+          <div className="bg-background/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 mb-8">
+            <h3 className="text-lg font-semibold text-foreground mb-4">1-Minute Application Form</h3>
+            <div className="space-y-4 text-left max-w-md mx-auto">
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">Name</label>
+                <div className="h-10 bg-muted/50 rounded border border-border"></div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">Email</label>
+                <div className="h-10 bg-muted/50 rounded border border-border"></div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">Role Interest</label>
+                <div className="h-10 bg-muted/50 rounded border border-border flex items-center px-3 text-muted-foreground text-sm">
+                  COO / CMO / CTO/AI / CFO
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">Portfolio Link</label>
+                <div className="h-10 bg-muted/50 rounded border border-border"></div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-background/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 mb-8">
+            <h3 className="text-lg font-semibold text-foreground mb-4">📅 Book Your 15-Minute Intro Call</h3>
+            <p className="text-muted-foreground mb-4">
+              Schedule directly with the founder via Calendly
+            </p>
+            <div className="h-32 bg-muted/50 rounded border border-border flex items-center justify-center text-muted-foreground">
+              [Calendly Embed Here]
+            </div>
+          </div>
+
+          <div className="text-center">
+            <h3 className="text-xl font-bold text-foreground mb-4">
+              Start your career in the C-suite. Apply today.
+            </h3>
+            <Button size="lg" className="group">
+              Submit Application
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
-          <p className="text-sm text-muted-foreground mt-6">
-            Applications reviewed weekly • Start dates flexible • Remote-friendly
-          </p>
         </div>
       </Section>
     </>
