@@ -1,7 +1,7 @@
 import { Hero } from "@/components/marketing/hero";
 import { HowItWorks } from "@/components/marketing/how-it-works";
 import { MemoryRibbon } from "@/components/ai/memory-ribbon";
-import { KpiCard, sampleKpiData } from "@/components/charts/kpi-card";
+import { KpiCard } from "@/components/charts/kpi-card";
 import { Testimonials } from "@/components/marketing/testimonials";
 import { CtaSection } from "@/components/marketing/cta-section";
 import { Section } from "@/components/marketing/section";
@@ -14,6 +14,59 @@ export const metadata = constructMetadata({
 });
 
 export default function HomePage() {
+  const kpiData = {
+    satisfaction: {
+      title: "Satisfaction",
+      value: "4.8",
+      delta: {
+        value: 12,
+        label: "vs last month",
+        trend: "up" as const,
+      },
+      chart: {
+        type: "area" as const,
+        data: [
+          { value: 4.2 },
+          { value: 4.3 },
+          { value: 4.1 },
+          { value: 4.5 },
+          { value: 4.6 },
+          { value: 4.7 },
+          { value: 4.8 },
+        ],
+      },
+    },
+    reworkRate: {
+      title: "Rework Rate",
+      value: "2.1%",
+      delta: {
+        value: -45,
+        label: "vs last month",
+        trend: "down" as const,
+      },
+      chart: {
+        type: "line" as const,
+        data: [
+          { value: 3.8 },
+          { value: 3.2 },
+          { value: 2.9 },
+          { value: 2.7 },
+          { value: 2.4 },
+          { value: 2.3 },
+          { value: 2.1 },
+        ],
+      },
+    },
+    preferencesLearned: {
+      title: "Preferences Learned",
+      value: "127",
+      delta: {
+        value: 23,
+        label: "this month",
+        trend: "up" as const,
+      },
+    },
+  };
   return (
     <>
       <Hero />
@@ -66,22 +119,22 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           <KpiCard 
-            title={sampleKpiData.satisfaction.title}
-            value={sampleKpiData.satisfaction.value}
-            delta={sampleKpiData.satisfaction.delta}
-            chart={sampleKpiData.satisfaction.chart}
+            title={kpiData.satisfaction.title}
+            value={kpiData.satisfaction.value}
+            delta={kpiData.satisfaction.delta}
+            chart={kpiData.satisfaction.chart}
           />
           <KpiCard 
-            title={sampleKpiData.reworkRate.title}
-            value={sampleKpiData.reworkRate.value}
-            delta={sampleKpiData.reworkRate.delta}
-            chart={sampleKpiData.reworkRate.chart}
+            title={kpiData.reworkRate.title}
+            value={kpiData.reworkRate.value}
+            delta={kpiData.reworkRate.delta}
+            chart={kpiData.reworkRate.chart}
           />
           <KpiCard 
-            title={sampleKpiData.preferencesLearned.title}
-            value={sampleKpiData.preferencesLearned.value}
-            delta={sampleKpiData.preferencesLearned.delta}
-            chart={sampleKpiData.preferencesLearned.chart}
+            title={kpiData.preferencesLearned.title}
+            value={kpiData.preferencesLearned.value}
+            delta={kpiData.preferencesLearned.delta}
+            chart={kpiData.preferencesLearned.chart}
           />
         </div>
       </Section>
