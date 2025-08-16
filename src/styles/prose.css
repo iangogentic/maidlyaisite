@@ -1,0 +1,116 @@
+/* Enhanced prose styles for MDX content */
+.prose {
+  @apply max-w-none text-foreground leading-7;
+}
+
+.prose h1 {
+  @apply text-display-md font-bold text-foreground mb-6 mt-0 scroll-m-20;
+}
+
+.prose h2 {
+  @apply text-display-sm font-semibold text-foreground mb-4 mt-8 scroll-m-20 border-b pb-2;
+}
+
+.prose h3 {
+  @apply text-xl font-semibold text-foreground mb-3 mt-6 scroll-m-20;
+}
+
+.prose h4 {
+  @apply text-lg font-semibold text-foreground mb-2 mt-4 scroll-m-20;
+}
+
+.prose p {
+  @apply text-base leading-7 text-muted-foreground mb-4;
+}
+
+.prose a {
+  @apply text-primary hover:text-primary/80 underline underline-offset-4 transition-colors font-medium;
+}
+
+.prose strong {
+  @apply font-semibold text-foreground;
+}
+
+.prose em {
+  @apply italic;
+}
+
+.prose ul, .prose ol {
+  @apply mb-4 pl-6 space-y-2;
+}
+
+.prose ul {
+  @apply list-disc;
+}
+
+.prose ol {
+  @apply list-decimal;
+}
+
+.prose li {
+  @apply text-muted-foreground;
+}
+
+.prose li > p {
+  @apply mb-2;
+}
+
+.prose code {
+  @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono text-foreground relative;
+}
+
+.prose pre {
+  @apply bg-muted p-4 rounded-lg overflow-x-auto mb-4 border;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 text-sm;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-primary pl-4 italic text-muted-foreground mb-4 bg-muted/30 py-2 rounded-r;
+}
+
+.prose table {
+  @apply w-full border-collapse border border-border mb-4;
+}
+
+.prose th {
+  @apply border border-border px-4 py-2 bg-muted font-semibold text-left;
+}
+
+.prose td {
+  @apply border border-border px-4 py-2;
+}
+
+.prose img {
+  @apply rounded-lg border mb-4;
+}
+
+.prose hr {
+  @apply border-t border-border my-8;
+}
+
+/* Code syntax highlighting placeholder */
+.prose .hljs {
+  @apply bg-transparent;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .prose {
+    @apply text-sm;
+  }
+  
+  .prose h1 {
+    @apply text-2xl;
+  }
+  
+  .prose h2 {
+    @apply text-xl;
+  }
+  
+  .prose h3 {
+    @apply text-lg;
+  }
+}

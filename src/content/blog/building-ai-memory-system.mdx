@@ -1,0 +1,141 @@
+---
+title: "Building an AI Memory System for Home Services"
+description: "A deep dive into how we built our RAG-powered preference learning system that gets smarter with every cleaning."
+date: "2024-01-22"
+author: "Engineering Team"
+tags: ["engineering", "ai", "rag", "technical"]
+---
+
+# Building an AI Memory System for Home Services
+
+One of the biggest challenges in home services is personalization at scale. How do you remember that Mrs. Johnson prefers lavender-scented products while Mr. Chen needs everything to be unscented? How do you ensure this knowledge transfers between different crew members?
+
+At Maidly.ai, we solved this with a custom AI memory system built on Retrieval-Augmented Generation (RAG). Here's how we did it.
+
+## The Architecture
+
+Our memory system consists of four main components:
+
+### 1. Preference Extractor
+When customers provide feedback, our AI extracts structured preferences using GPT-4:
+
+```typescript
+interface Preference {
+  category: 'products' | 'access' | 'pets' | 'special';
+  label: string;
+  confidence: number;
+  context: string;
+}
+```
+
+**Input:** "Please don't use any bleach products, they trigger my asthma"
+**Output:** 
+```json
+{
+  "category": "products",
+  "label": "No bleach products",
+  "confidence": 0.95,
+  "context": "Customer has asthma sensitivity"
+}
+```
+
+### 2. Vector Storage
+We use Pinecone to store preferences as embeddings, enabling semantic search:
+
+```python
+# Store preference with metadata
+index.upsert([
+    {
+        "id": f"{customer_id}_{preference_id}",
+        "values": embedding,
+        "metadata": {
+            "customer_id": customer_id,
+            "category": preference.category,
+            "label": preference.label,
+            "active": True,
+            "created_at": timestamp
+        }
+    }
+])
+```
+
+### 3. Briefing Generator
+Before each cleaning, we query the vector database and generate crew briefings:
+
+```typescript
+const briefing = await generateBriefing({
+  customerPreferences: preferences,
+  homeDetails: homeInfo,
+  previousVisits: visitHistory
+});
+```
+
+### 4. Feedback Loop
+After each visit, we analyze outcomes to improve our system:
+- Did the crew follow the briefing correctly?
+- Were there any new preferences mentioned?
+- How satisfied was the customer?
+
+## Technical Challenges
+
+### Challenge 1: Preference Conflicts
+What happens when a customer says "use eco-friendly products" but later requests "the strongest cleaner possible"?
+
+**Solution:** We implemented a confidence scoring system and temporal weighting. Recent preferences get higher priority, and we flag conflicts for human review.
+
+### Challenge 2: Context Understanding
+"Don't wake the baby" means different things at different times of day.
+
+**Solution:** We store contextual metadata and use LangChain to build dynamic prompts that consider time, day of week, and household patterns.
+
+### Challenge 3: Privacy & Security
+Customer preferences contain sensitive information about their homes and families.
+
+**Solution:** 
+- End-to-end encryption for all stored data
+- Minimal data retention (preferences only, no personal details)
+- Customer control over data deletion
+
+## Results & Metrics
+
+After 6 months of development and 3 months of beta testing:
+
+- **95% accuracy** in preference extraction
+- **2.1% rework rate** (down from 8.5% industry average)
+- **4.8/5 satisfaction** rating from beta customers
+- **47 preferences** learned per customer on average
+
+## What's Next
+
+We're working on several exciting improvements:
+
+### Predictive Preferences
+Using machine learning to predict preferences before customers explicitly state them:
+"Based on your home and family profile, you might prefer..."
+
+### Multi-Modal Learning
+Incorporating photos from cleaning visits to learn visual preferences:
+"Customer prefers books organized by height, not alphabetically"
+
+### Crew Optimization
+Matching customers with crews based on preference compatibility and past performance.
+
+## Open Source Components
+
+We believe in giving back to the community. We've open-sourced several components:
+
+- **Preference Parser**: NLP library for extracting structured data from feedback
+- **RAG Utils**: Helper functions for vector database operations
+- **Briefing Templates**: Customizable templates for generating crew instructions
+
+Check out our [GitHub repository](https://github.com/maidlyai) to contribute or learn more.
+
+## Conclusion
+
+Building an AI memory system for home services required solving unique challenges around privacy, context, and real-world reliability. The result is a system that truly learns and improves with every interaction.
+
+We're just getting started. As we expand beyond Dallas, we're excited to see how our AI memory system performs across different markets and customer preferences.
+
+---
+
+*Want to dive deeper into our technical architecture? Join our engineering team! We're hiring across AI/ML, full-stack, and data roles. [View open positions](/careers).*

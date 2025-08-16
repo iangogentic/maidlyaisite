@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Maidly.ai Brand Colors */
+  --brand: 198 90% 40%;      /* teal-clean */
+  --brand-foreground: 180 10% 98%;
+  --ink: 220 15% 15%;        /* near-black */
+  
+  /* Base tokens */
+  --radius: 1rem;
+  --background: 0 0% 100%;
+  --foreground: var(--ink);
+  --card: 0 0% 100%;
+  --card-foreground: var(--ink);
+  --popover: 0 0% 100%;
+  --popover-foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: var(--brand-foreground);
+  --secondary: 210 16% 96%;
+  --secondary-foreground: var(--ink);
+  --muted: 210 16% 96%;
+  --muted-foreground: 220 15% 45%;
+  --accent: 210 16% 96%;
+  --accent-foreground: var(--ink);
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: var(--brand);
+  
+  /* Chart colors */
+  --chart-1: var(--brand);
+  --chart-2: 142 76% 36%;
+  --chart-3: 262 83% 58%;
+  --chart-4: 346 87% 43%;
+  --chart-5: 35 91% 65%;
+}
+
+.dark {
+  --background: 220 15% 8%;
+  --foreground: 210 16% 96%;
+  --card: 220 15% 10%;
+  --card-foreground: 210 16% 96%;
+  --popover: 220 15% 10%;
+  --popover-foreground: 210 16% 96%;
+  --primary: 198 90% 50%;
+  --primary-foreground: 220 15% 8%;
+  --secondary: 220 15% 15%;
+  --secondary-foreground: 210 16% 96%;
+  --muted: 220 15% 15%;
+  --muted-foreground: 220 15% 65%;
+  --accent: 220 15% 15%;
+  --accent-foreground: 210 16% 96%;
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 220 15% 20%;
+  --input: 220 15% 20%;
+  --ring: 198 90% 50%;
+  
+  /* Chart colors for dark mode */
+  --chart-1: 198 90% 50%;
+  --chart-2: 142 76% 46%;
+  --chart-3: 262 83% 68%;
+  --chart-4: 346 87% 53%;
+  --chart-5: 35 91% 75%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Focus states */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-shimmer {
+      animation: none;
+    }
+    
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Prose styles for MDX content */
+.prose {
+  @apply max-w-none text-foreground;
+}
+
+.prose h1 {
+  @apply text-display-md font-bold text-foreground mb-6;
+}
+
+.prose h2 {
+  @apply text-display-sm font-semibold text-foreground mb-4 mt-8;
+}
+
+.prose h3 {
+  @apply text-xl font-semibold text-foreground mb-3 mt-6;
+}
+
+.prose p {
+  @apply text-base leading-7 text-muted-foreground mb-4;
+}
+
+.prose a {
+  @apply text-primary hover:text-primary/80 underline underline-offset-4 transition-colors;
+}
+
+.prose ul, .prose ol {
+  @apply mb-4 pl-6;
+}
+
+.prose li {
+  @apply mb-2 text-muted-foreground;
+}
+
+.prose code {
+  @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono text-foreground;
+}
+
+.prose pre {
+  @apply bg-muted p-4 rounded-lg overflow-x-auto mb-4;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-primary pl-4 italic text-muted-foreground mb-4;
+}
