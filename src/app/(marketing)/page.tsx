@@ -65,9 +65,24 @@ export default function HomePage() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <KpiCard {...sampleKpiData.satisfaction} />
-          <KpiCard {...sampleKpiData.reworkRate} />
-          <KpiCard {...sampleKpiData.preferencesLearned} />
+          <KpiCard 
+            title={sampleKpiData.satisfaction.title}
+            value={sampleKpiData.satisfaction.value}
+            delta={sampleKpiData.satisfaction.delta}
+            chart={sampleKpiData.satisfaction.chart}
+          />
+          <KpiCard 
+            title={sampleKpiData.reworkRate.title}
+            value={sampleKpiData.reworkRate.value}
+            delta={sampleKpiData.reworkRate.delta}
+            chart={sampleKpiData.reworkRate.chart}
+          />
+          <KpiCard 
+            title={sampleKpiData.preferencesLearned.title}
+            value={sampleKpiData.preferencesLearned.value}
+            delta={sampleKpiData.preferencesLearned.delta}
+            chart={sampleKpiData.preferencesLearned.chart}
+          />
         </div>
       </Section>
 
