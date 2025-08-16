@@ -65,6 +65,18 @@ export default function HomePage() {
         label: "this month",
         trend: "up" as const,
       },
+      chart: {
+        type: "area" as const,
+        data: [
+          { value: 89 },
+          { value: 95 },
+          { value: 102 },
+          { value: 108 },
+          { value: 115 },
+          { value: 121 },
+          { value: 127 },
+        ],
+      },
     },
   };
   return (
