@@ -116,11 +116,7 @@ export function HowItWorks() {
           })}
         </div>
 
-        {/* Connection lines for desktop */}
-        <div className="hidden md:block relative -mt-32 mb-16">
-          <div className="absolute top-16 left-1/3 w-1/3 h-0.5 bg-gradient-to-r from-primary/50 to-primary/50" />
-          <div className="absolute top-16 right-0 w-1/3 h-0.5 bg-gradient-to-r from-primary/50 to-primary/50" />
-        </div>
+
       </div>
     </section>
   );
