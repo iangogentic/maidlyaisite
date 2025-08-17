@@ -320,7 +320,7 @@ ${preferences.filter(p => p.active).map(p => `• ${p.label} (${p.category})`).j
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild>
-              <Link href="/pricing">
+              <Link href="/book-beta">
                 <Home className="w-4 h-4 mr-2" />
                 Book Beta Service
               </Link>

@@ -43,9 +43,15 @@ export function constructMetadata({
       creator: "@maidlyai",
     },
     icons: {
-      icon: "/favicon.ico",
-      shortcut: "/favicon-16x16.png",
-      apple: "/apple-touch-icon.png",
+      icon: [
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon-16x16.svg", sizes: "16x16", type: "image/svg+xml" },
+        { url: "/favicon.ico", sizes: "32x32" }
+      ],
+      shortcut: "/favicon-16x16.svg",
+      apple: [
+        { url: "/apple-touch-icon.svg", sizes: "180x180", type: "image/svg+xml" }
+      ],
     },
     metadataBase: new URL(url),
     ...(noIndex && {

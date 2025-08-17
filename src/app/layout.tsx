@@ -4,6 +4,7 @@ import "./globals.css";
 import "../styles/prose.css";
 import { constructMetadata, generateOrganizationJsonLd, generateLocalBusinessJsonLd, generateServiceJsonLd } from "@/lib/seo";
 import { Toaster } from "@/components/ui/sonner";
+import { FloatingAssistant } from "@/components/ai/floating-assistant";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -54,6 +55,7 @@ export default function RootLayout({
         className={`${inter.variable} ${jakarta.variable} font-sans antialiased`}
       >
         {children}
+        <FloatingAssistant />
         <Toaster />
       </body>
     </html>

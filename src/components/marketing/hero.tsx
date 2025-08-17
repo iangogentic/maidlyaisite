@@ -78,7 +78,7 @@ export function Hero() {
               className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold group"
               asChild
             >
-              <Link href="#waitlist">
+              <Link href="/book-beta">
                 Book Beta
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>

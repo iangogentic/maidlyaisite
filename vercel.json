@@ -31,7 +31,7 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://maidly.ai"
+          "value": "*"
         },
         {
           "key": "Access-Control-Allow-Methods",

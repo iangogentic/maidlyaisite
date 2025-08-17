@@ -96,7 +96,7 @@ export function Header() {
               asChild
               className="bg-primary hover:bg-primary/90 text-primary-foreground focus-ring"
             >
-              <Link href="#waitlist">Book Beta</Link>
+              <Link href="/book-beta">Book Beta</Link>
             </Button>
           </div>
 
@@ -158,7 +158,7 @@ export function Header() {
                       className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                     >
                       <Link
-                        href="#waitlist"
+                        href="/book-beta"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Book Beta
