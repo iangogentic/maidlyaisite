@@ -3,78 +3,15 @@ import { Section } from "@/components/marketing/section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Star, Clock, Home, Sparkles, ArrowRight } from "lucide-react";
+import { CheckCircle, Star, Clock, Home, Sparkles, ArrowRight, Calculator } from "lucide-react";
+import { PricingCalculator } from "@/components/pricing/pricing-calculator";
 
 export const metadata = constructMetadata({
-  title: "Pricing",
-  description: "Transparent pricing for AI-powered home cleaning. Weekly, bi-weekly, and monthly plans available in Dallas suburbs.",
+  title: "Pricing Calculator - Get Your Instant Quote",
+  description: "Get real-time pricing for AI-powered home cleaning. Choose eco-friendly, regular, or bring-your-own supplies. Instant quotes in Dallas suburbs.",
 });
 
-const plans = [
-  {
-    name: "Bi-weekly",
-    description: "Perfect for busy families",
-    price: "$120",
-    period: "per visit",
-    popular: false,
-    features: [
-      "Every 2 weeks cleaning",
-      "AI preference learning",
-      "Crew briefings",
-      "Eco-friendly products",
-      "Photo documentation",
-      "Quality guarantee",
-      "Flexible rescheduling",
-    ],
-    addOns: [
-      { name: "Inside oven", price: "$25" },
-      { name: "Inside refrigerator", price: "$20" },
-      { name: "Garage organization", price: "$40" },
-    ],
-  },
-  {
-    name: "Weekly",
-    description: "Maximum convenience & learning",
-    price: "$95",
-    period: "per visit",
-    popular: true,
-    features: [
-      "Weekly cleaning service",
-      "Fastest AI learning curve",
-      "Priority crew briefings",
-      "Premium product options",
-      "Same-day photo reports",
-      "Quality guarantee",
-      "Priority rescheduling",
-      "Dedicated crew assignment",
-    ],
-    addOns: [
-      { name: "Inside oven", price: "$20" },
-      { name: "Inside refrigerator", price: "$15" },
-      { name: "Garage organization", price: "$35" },
-    ],
-  },
-  {
-    name: "Monthly",
-    description: "Budget-friendly option",
-    price: "$150",
-    period: "per visit",
-    popular: false,
-    features: [
-      "Monthly deep cleaning",
-      "AI preference tracking",
-      "Basic crew briefings",
-      "Standard products",
-      "Photo documentation",
-      "Quality guarantee",
-    ],
-    addOns: [
-      { name: "Inside oven", price: "$30" },
-      { name: "Inside refrigerator", price: "$25" },
-      { name: "Garage organization", price: "$50" },
-    ],
-  },
-];
+
 
 const betaPerks = [
   {
@@ -98,111 +35,34 @@ export default function PricingPage() {
   return (
     <>
       {/* Hero Section */}
-      <Section className="pt-24 pb-16 bg-gradient-to-b from-background to-muted/20">
+      <Section className="pt-16 pb-6 bg-gradient-to-b from-background to-muted/20">
         <div className="text-center max-w-4xl mx-auto">
-          <Badge variant="secondary" className="mb-6">
-            <Home className="w-4 h-4 mr-2" />
-            Beta Pricing - Dallas Suburbs
+          <Badge variant="secondary" className="mb-3">
+            <Calculator className="w-4 h-4 mr-2" />
+            Instant Quote Calculator - Dallas Suburbs
           </Badge>
-          <h1 className="text-display-xl font-bold text-foreground mb-6 font-display">
-            Transparent Pricing
+          <h1 className="text-display-xl font-bold text-foreground mb-3 font-display">
+            Get Your Real-Time Quote
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Choose the cleaning frequency that works for your lifestyle. All plans include our AI memory system and quality guarantee.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
+            Personalized pricing in 60 seconds. Choose eco-friendly, regular, or bring-your-own supplies. Book instantly or call to discuss.
           </p>
-          <div className="bg-primary/10 border border-primary/20 rounded-lg p-4 max-w-md mx-auto">
+          <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 max-w-md mx-auto">
             <p className="text-sm text-primary font-medium">
-              🎉 Beta Special: 20% off your first 3 cleanings
+              🎉 Beta Special: 20% off your first 3 cleanings + Price locked for 7 days
             </p>
           </div>
         </div>
       </Section>
 
-      {/* Pricing Cards */}
+      {/* Pricing Calculator */}
+      <Section className="py-6">
+        <PricingCalculator />
+      </Section>
+
+      {/* Beta Perks */}
       <Section>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {plans.map((plan) => (
-            <Card
-              key={plan.name}
-              className={`relative ${
-                plan.popular
-                  ? "border-2 border-primary shadow-lg scale-105"
-                  : "border hover:border-primary/20"
-              } transition-all duration-300`}
-            >
-              {plan.popular && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <Badge className="bg-primary text-primary-foreground px-4 py-1">
-                    Most Popular
-                  </Badge>
-                </div>
-              )}
-              
-              <CardHeader className="text-center pb-4">
-                <CardTitle className="text-2xl font-bold">{plan.name}</CardTitle>
-                <p className="text-muted-foreground">{plan.description}</p>
-                <div className="mt-4">
-                  <div className="flex items-baseline justify-center">
-                    <span className="text-4xl font-bold text-foreground">{plan.price}</span>
-                    <span className="text-muted-foreground ml-2">{plan.period}</span>
-                  </div>
-                  {plan.popular && (
-                    <div className="text-sm text-primary font-medium mt-2">
-                      Save $25 per visit vs monthly
-                    </div>
-                  )}
-                </div>
-              </CardHeader>
-              
-              <CardContent className="space-y-6">
-                {/* Features */}
-                <div>
-                  <h4 className="font-semibold mb-3">What's included:</h4>
-                  <ul className="space-y-2">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-center text-sm">
-                        <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Add-ons */}
-                <div>
-                  <h4 className="font-semibold mb-3">Popular add-ons:</h4>
-                  <ul className="space-y-1">
-                    {plan.addOns.map((addOn) => (
-                      <li key={addOn.name} className="flex justify-between text-sm text-muted-foreground">
-                        <span>{addOn.name}</span>
-                        <span>{addOn.price}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* CTA Button */}
-                <Button
-                  className={`w-full ${
-                    plan.popular
-                      ? "bg-primary hover:bg-primary/90 text-primary-foreground"
-                      : ""
-                  } group`}
-                  variant={plan.popular ? "default" : "outline"}
-                  asChild
-                >
-                  <a href="#waitlist">
-                    Reserve Your Slot
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Beta Perks */}
-        <div className="mt-16 max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <h3 className="text-2xl font-bold text-center mb-8 font-display">
             Beta Program Perks
           </h3>
@@ -225,68 +85,258 @@ export default function PricingPage() {
         </div>
       </Section>
 
-      {/* Pricing Details */}
-      <Section className="bg-muted/20">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-display-sm font-bold text-center mb-12 font-display">
-            Pricing Details
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Home className="w-5 h-5 mr-2 text-primary" />
-                  Service Area & Pricing
-                </CardTitle>
+      {/* AI Benefits Section */}
+      <Section className="bg-gradient-to-br from-primary/5 via-background to-muted/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge variant="outline" className="mb-6">
+              <Sparkles className="w-4 h-4 mr-2" />
+              AI-Powered Intelligence
+            </Badge>
+            <h2 className="text-display-sm font-bold text-foreground mb-4 font-display">
+              Why AI Makes All the Difference
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Traditional cleaning services forget. Our AI remembers everything, learns continuously, and gets better with every visit.
+            </p>
+          </div>
+
+          {/* Before vs After Comparison */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            {/* Without AI */}
+            <Card className="border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-900/10">
+              <CardHeader className="text-center pb-6">
+                <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Home className="w-8 h-8 text-red-600 dark:text-red-400" />
+                </div>
+                <CardTitle className="text-xl text-red-800 dark:text-red-200">Traditional Cleaning</CardTitle>
+                <p className="text-red-600 dark:text-red-400">
+                  Same routine, every time
+                </p>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Current Service Area:</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Plano, TX</li>
-                    <li>• Frisco, TX</li>
-                    <li>• Allen, TX</li>
-                    <li>• McKinney, TX (select areas)</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Pricing Notes:</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Prices based on 2-3 bedroom homes</li>
-                    <li>• Larger homes: +$20-40 per visit</li>
-                    <li>• First-time deep clean: +$50</li>
-                    <li>• No contracts or cancellation fees</li>
-                  </ul>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="text-sm text-red-700 dark:text-red-300">Repeat instructions every visit</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="text-sm text-red-700 dark:text-red-300">Generic cleaning checklist</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="text-sm text-red-700 dark:text-red-300">Missed preferences and details</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="text-sm text-red-700 dark:text-red-300">Inconsistent results</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="text-sm text-red-700 dark:text-red-300">Higher rework rate (8-12%)</p>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Sparkles className="w-5 h-5 mr-2 text-primary" />
-                  AI Memory Benefits
-                </CardTitle>
+            {/* With AI */}
+            <Card className="border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-900/10 relative overflow-hidden">
+              <div className="absolute top-4 right-4">
+                <Badge className="bg-green-600 text-white">
+                  <Star className="w-3 h-3 mr-1" />
+                  Maidly.ai
+                </Badge>
+              </div>
+              <CardHeader className="text-center pb-6">
+                <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Sparkles className="w-8 h-8 text-green-600 dark:text-green-400" />
+                </div>
+                <CardTitle className="text-xl text-green-800 dark:text-green-200">AI-Powered Cleaning</CardTitle>
+                <p className="text-green-600 dark:text-green-400">
+                  Learns, remembers, improves
+                </p>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">How AI Improves Value:</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Reduces rework and callbacks</li>
-                    <li>• Faster, more efficient cleaning</li>
-                    <li>• Personalized service every visit</li>
-                    <li>• Crew preparation saves time</li>
-                  </ul>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="text-sm text-green-700 dark:text-green-300">Remembers every preference automatically</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="text-sm text-green-700 dark:text-green-300">Personalized cleaning plan for your home</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="text-sm text-green-700 dark:text-green-300">Detailed crew briefings every visit</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="text-sm text-green-700 dark:text-green-300">Consistently improving results</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="text-sm text-green-700 dark:text-green-300">Ultra-low rework rate (2.1%)</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Learning Timeline:</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Visit 1-2: Basic preferences captured</li>
-                    <li>• Visit 3-5: Detailed profile built</li>
-                    <li>• Visit 6+: Fully personalized service</li>
-                  </ul>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* AI Learning Timeline */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-center mb-8 font-display">
+              Your AI Learning Journey
+            </h3>
+            <div className="relative">
+              {/* Timeline Line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary via-primary to-primary/30 hidden md:block"></div>
+              
+              <div className="space-y-8 md:space-y-12">
+                {/* Visit 1-2 */}
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="md:w-1/2 md:text-right">
+                    <Card className="bg-primary/5 border-primary/20">
+                      <CardContent className="p-6">
+                        <div className="flex items-center gap-3 mb-3 md:justify-end">
+                          <Badge variant="secondary">Visits 1-2</Badge>
+                          <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                            <span className="text-sm font-semibold text-primary">1</span>
+                          </div>
+                        </div>
+                        <h4 className="font-semibold mb-2">First Impressions</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Our AI captures your basic preferences: favorite products, pet considerations, access instructions, and initial feedback.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                  <div className="hidden md:block w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
+                  <div className="md:w-1/2"></div>
                 </div>
+
+                {/* Visit 3-5 */}
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="md:w-1/2"></div>
+                  <div className="hidden md:block w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
+                  <div className="md:w-1/2">
+                    <Card className="bg-primary/10 border-primary/30">
+                      <CardContent className="p-6">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-8 h-8 bg-primary/30 rounded-full flex items-center justify-center">
+                            <span className="text-sm font-semibold text-primary">2</span>
+                          </div>
+                          <Badge variant="secondary">Visits 3-5</Badge>
+                        </div>
+                        <h4 className="font-semibold mb-2">Building Your Profile</h4>
+                        <p className="text-sm text-muted-foreground">
+                          AI learns your detailed preferences: specific room priorities, timing preferences, special care items, and cleaning style.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+
+                {/* Visit 6+ */}
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="md:w-1/2 md:text-right">
+                    <Card className="bg-gradient-to-r from-primary/10 to-primary/20 border-primary/40">
+                      <CardContent className="p-6">
+                        <div className="flex items-center gap-3 mb-3 md:justify-end">
+                          <Badge className="bg-primary text-primary-foreground">Visits 6+</Badge>
+                          <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                            <Star className="w-4 h-4 text-primary-foreground" />
+                          </div>
+                        </div>
+                        <h4 className="font-semibold mb-2">Fully Personalized</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Your AI profile is complete! Every crew gets a detailed briefing tailored specifically to your home and preferences.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                  <div className="hidden md:block w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
+                  <div className="md:w-1/2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Key Benefits Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="text-center border-0 shadow-lg bg-background/80 backdrop-blur-sm">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                </div>
+                <h4 className="font-semibold mb-2">75% Faster Setup</h4>
+                <p className="text-sm text-muted-foreground">
+                  No more explaining your preferences every visit. AI briefs the crew before they arrive.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center border-0 shadow-lg bg-background/80 backdrop-blur-sm">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
+                </div>
+                <h4 className="font-semibold mb-2">80% Fewer Callbacks</h4>
+                <p className="text-sm text-muted-foreground">
+                  AI ensures nothing is missed or forgotten, dramatically reducing the need for return visits.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center border-0 shadow-lg bg-background/80 backdrop-blur-sm">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Star className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                </div>
+                <h4 className="font-semibold mb-2">4.8/5 Satisfaction</h4>
+                <p className="text-sm text-muted-foreground">
+                  Customers love the personalized experience that gets better with every single visit.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Customer Quote */}
+          <div className="mt-16 text-center">
+            <Card className="max-w-2xl mx-auto bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
+              <CardContent className="p-8">
+                <div className="flex justify-center mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <blockquote className="text-lg italic text-foreground mb-4">
+                  "It's like having a cleaner who's worked in my home for years, but it only took 3 visits for Maidly to learn everything perfectly. They remember that I want the throw pillows arranged just so, and that my cat needs the bedroom door left open. It's incredible."
+                </blockquote>
+                <cite className="text-sm text-muted-foreground">
+                  — Sarah M., Plano, TX • Customer since Month 2 of Beta
+                </cite>
               </CardContent>
             </Card>
           </div>
