@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -23,6 +23,7 @@ interface PricingState {
   bedrooms: number;
   bathrooms: number;
   cleaningType: 'eco' | 'regular' | 'byo';
+  serviceType: 'regular' | 'deep' | 'one_time';
   frequency: 'weekly' | 'biweekly' | 'monthly';
   addOns: string[];
 }
@@ -32,6 +33,7 @@ const initialState: PricingState = {
   bedrooms: 2,
   bathrooms: 2,
   cleaningType: 'regular',
+  serviceType: 'regular',
   frequency: 'biweekly',
   addOns: []
 };
@@ -73,24 +75,85 @@ const frequencyOptions = [
   { id: 'monthly', name: 'Monthly', discount: 0, badge: 'Standard' }
 ];
 
-export function PricingCalculator() {
+interface PricingCalculatorProps {
+  onPriceUpdate?: (data: {
+    homeSize: number;
+    bedrooms: number;
+    bathrooms: number;
+    cleaningType: 'eco_friendly' | 'regular' | 'bring_own_supplies';
+    serviceType: 'regular' | 'deep' | 'one_time';
+    frequency?: 'weekly' | 'bi_weekly' | 'monthly';
+    addOns: string[];
+    totalPrice: number;
+  }) => void;
+}
+
+export function PricingCalculator({ onPriceUpdate }: PricingCalculatorProps = {}) {
   const [state, setState] = useState<PricingState>(initialState);
+
+  // Call onPriceUpdate on initial mount and when state changes
+  useEffect(() => {
+    if (onPriceUpdate) {
+      const totalPrice = calculateTotalPrice(state);
+      const mappedCleaningType = state.cleaningType === 'eco' ? 'eco_friendly' : 
+                                state.cleaningType === 'byo' ? 'bring_own_supplies' : 'regular';
+      const mappedFrequency = state.frequency === 'biweekly' ? 'bi_weekly' : state.frequency;
+      
+      onPriceUpdate({
+        homeSize: state.homeSize,
+        bedrooms: state.bedrooms,
+        bathrooms: state.bathrooms,
+        cleaningType: mappedCleaningType as 'eco_friendly' | 'regular' | 'bring_own_supplies',
+        serviceType: state.serviceType as 'regular' | 'deep' | 'one_time',
+        frequency: mappedFrequency as 'weekly' | 'bi_weekly' | 'monthly' | undefined,
+        addOns: state.addOns,
+        totalPrice: totalPrice
+      });
+    }
+  }, [state, onPriceUpdate]); // Run when state or onPriceUpdate changes
 
   const updateState = (updates: Partial<PricingState>) => {
     setState(prev => ({ ...prev, ...updates }));
+    // onPriceUpdate will be called automatically by useEffect when state changes
   };
 
-  const calculateBasePrice = () => {
+  const calculateTotalPrice = (currentState: PricingState) => {
+    const basePrice = calculateBasePrice(currentState);
+    const addOnPrice = calculateAddOnPrice(currentState);
+    const frequencyDiscount = getFrequencyDiscount(currentState.frequency);
+    
+    const subtotal = basePrice + addOnPrice;
+    const discountAmount = subtotal * frequencyDiscount;
+    
+    return Math.round(subtotal - discountAmount);
+  };
+
+  const calculateBasePrice = (currentState = state) => {
     // Base calculation: $0.08 per sq ft + $20 per bedroom + $25 per bathroom + $50 base fee
     const baseService = 50; // Base service fee
-    const sqftPrice = state.homeSize * 0.08;
-    const bedroomPrice = state.bedrooms * 20;
-    const bathroomPrice = state.bathrooms * 25;
+    const sqftPrice = currentState.homeSize * 0.08;
+    const bedroomPrice = currentState.bedrooms * 20;
+    const bathroomPrice = currentState.bathrooms * 25;
     
     return Math.round(baseService + sqftPrice + bedroomPrice + bathroomPrice);
   };
 
-  const calculateTotalPrice = () => {
+  const calculateAddOnPrice = (currentState = state) => {
+    if (!currentState.addOns || !Array.isArray(currentState.addOns)) {
+      return 0;
+    }
+    return currentState.addOns.reduce((total, addOnId) => {
+      const addOn = addOnOptions.find(a => a.id === addOnId);
+      return total + (addOn ? addOn.price : 0);
+    }, 0);
+  };
+
+  const getFrequencyDiscount = (frequency?: string) => {
+    const freq = frequencyOptions.find(f => f.id === frequency);
+    return freq ? freq.discount : 0;
+  };
+
+  const calculateTotalPriceForDisplay = () => {
     const basePrice = calculateBasePrice();
     const cleaningType = cleaningTypes.find(t => t.id === state.cleaningType)!;
     const frequency = frequencyOptions.find(f => f.id === state.frequency)!;
@@ -118,7 +181,7 @@ export function PricingCalculator() {
     };
   };
 
-  const pricing = calculateTotalPrice();
+  const pricing = calculateTotalPriceForDisplay();
   const selectedCleaningType = cleaningTypes.find(t => t.id === state.cleaningType)!;
   const selectedFrequency = frequencyOptions.find(f => f.id === state.frequency)!;
 

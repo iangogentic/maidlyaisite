@@ -1,0 +1,596 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Phase 1: Photo Documentation System",
+        "description": "Implement comprehensive photo documentation system for crew and customers",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [],
+        "details": "Build a complete photo documentation system that allows crew to capture before/after photos with GPS metadata, provides admin dashboard integration, and delivers photos to customers automatically. This is a critical industry-standard feature that will increase customer trust and retention by 25%.\n\nKey Requirements:\n- Crew mobile interface for photo capture\n- GPS metadata embedding\n- Admin dashboard photo gallery\n- Automated customer delivery\n- Photo optimization and CDN integration\n\nBusiness Impact: +25% customer retention, premium pricing justification\nTimeline: Week 1 (5 days)",
+        "testStrategy": "Test photo capture on mobile devices, verify GPS metadata embedding, validate admin dashboard photo gallery, confirm automated customer delivery, and measure photo loading performance under 2 seconds.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design crew mobile photo capture interface",
+            "description": "Create intuitive one-tap photo capture interface for crew mobile app",
+            "status": "done",
+            "dependencies": [],
+            "details": "Design and implement a mobile-first photo capture interface that allows crew to quickly take before/after photos with minimal taps. Include camera controls, photo preview, and immediate upload functionality.",
+            "testStrategy": "Test on various mobile devices, verify camera permissions, validate photo quality, and ensure upload reliability on different network conditions."
+          },
+          {
+            "id": 2,
+            "title": "Implement GPS metadata embedding",
+            "description": "Add GPS coordinates and timestamp metadata to all captured photos",
+            "status": "done",
+            "dependencies": [
+              "1.1"
+            ],
+            "details": "Embed GPS coordinates, timestamp, job ID, and crew member information into photo metadata for location verification and job tracking. Ensure metadata is preserved during upload and storage.",
+            "testStrategy": "Verify GPS accuracy within 5 meters, confirm metadata preservation, test in various locations, and validate data integrity after upload."
+          },
+          {
+            "id": 3,
+            "title": "Build admin dashboard photo gallery",
+            "description": "Create photo management interface in admin dashboard",
+            "status": "done",
+            "dependencies": [
+              "1.2"
+            ],
+            "details": "Develop a comprehensive photo gallery in the admin dashboard that organizes photos by job, date, and crew member. Include filtering, search, and bulk operations for photo management.",
+            "testStrategy": "Test photo organization and filtering, verify search functionality, validate bulk operations, and ensure fast loading with large photo collections."
+          },
+          {
+            "id": 4,
+            "title": "Implement automated customer photo delivery",
+            "description": "Set up automatic photo delivery to customers via email",
+            "status": "done",
+            "dependencies": [
+              "1.3"
+            ],
+            "details": "Create automated email system that sends photo galleries to customers within 1 hour of service completion. Include photo optimization, secure links, and delivery tracking.",
+            "testStrategy": "Test email delivery timing, verify photo optimization and loading speed, validate secure link access, and confirm delivery tracking accuracy."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Phase 1: Real-Time Notification System",
+        "description": "Build comprehensive notification system for SMS, email, and push notifications",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [],
+        "details": "Develop a real-time notification system that handles SMS for booking confirmations and crew arrival, email automation for service completion, and push notifications for admin dashboard updates. Target 99% delivery success rate and 30-second delivery time for critical notifications.\n\nKey Requirements:\n- SMS notifications (Twilio integration)\n- Email automation sequences\n- Push notifications for admin\n- Customer communication preferences\n- Delivery tracking and analytics\n\nBusiness Impact: +30% customer satisfaction, reduced support calls\nTimeline: Week 1-2 (7 days)",
+        "testStrategy": "Test notification delivery across all channels, verify timing accuracy, validate delivery tracking, and measure success rates under various network conditions.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement SMS notification service",
+            "description": "Set up SMS service for booking confirmations and crew arrival alerts",
+            "status": "done",
+            "dependencies": [],
+            "details": "Integrate with SMS provider (Twilio) to send booking confirmations within 30 seconds and crew arrival notifications 15 minutes before arrival. Include delivery tracking and retry mechanisms.",
+            "testStrategy": "Test SMS delivery timing, verify message content accuracy, validate delivery tracking, and test retry mechanisms for failed deliveries."
+          },
+          {
+            "id": 2,
+            "title": "Build email automation system",
+            "description": "Create automated email sequences for service lifecycle",
+            "status": "done",
+            "dependencies": [],
+            "details": "Develop email automation for service completion, follow-up sequences, and customer feedback requests. Include template management, personalization, and scheduling capabilities.",
+            "testStrategy": "Test email template rendering, verify automation triggers, validate personalization accuracy, and confirm scheduling reliability."
+          },
+          {
+            "id": 3,
+            "title": "Implement push notifications for admin dashboard",
+            "description": "Add real-time push notifications for admin alerts",
+            "status": "done",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Create push notification system for admin dashboard to alert about urgent issues, booking changes, and crew updates. Include notification preferences and priority levels.",
+            "testStrategy": "Test push notification delivery, verify alert prioritization, validate notification preferences, and ensure real-time delivery under 2 seconds."
+          },
+          {
+            "id": 4,
+            "title": "Build customer communication preferences",
+            "description": "Create interface for customers to manage notification preferences",
+            "status": "done",
+            "dependencies": [
+              "2.2",
+              "2.3"
+            ],
+            "details": "Develop customer preference management system allowing users to choose notification channels, timing, and frequency for different types of communications.",
+            "testStrategy": "Test preference interface usability, verify preference application accuracy, validate opt-out functionality, and confirm preference persistence."
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Phase 1: Enhanced Booking Management Interface",
+        "description": "Build advanced scheduling interface with drag-and-drop functionality",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [],
+        "details": "Create a modern booking management interface with drag-and-drop scheduling, visual crew assignment, conflict detection, and bulk operations. Target 40% improvement in admin productivity and sub-10-second job rescheduling.\n\nKey Requirements:\n- Drag-and-drop calendar interface\n- Visual crew assignment with availability\n- Booking conflict detection\n- Bulk operations for multiple bookings\n- Real-time synchronization\n\nBusiness Impact: +40% admin efficiency, better resource utilization\nTimeline: Week 2-3 (8 days)",
+        "testStrategy": "Test drag-and-drop functionality across browsers, verify conflict detection accuracy, validate bulk operations performance, and measure admin task completion time improvements.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design drag-and-drop calendar interface",
+            "description": "Create intuitive calendar interface for job scheduling",
+            "status": "done",
+            "dependencies": [],
+            "details": "Build a responsive calendar interface with drag-and-drop functionality for easy job rescheduling. Include day, week, and month views with crew availability indicators.",
+            "testStrategy": "Test drag-and-drop responsiveness, verify calendar view switching, validate crew availability display, and ensure mobile compatibility."
+          },
+          {
+            "id": 2,
+            "title": "Implement visual crew assignment system",
+            "description": "Add crew assignment interface with availability indicators",
+            "status": "done",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "Create visual crew assignment system showing crew availability, skills, and location. Include automatic assignment suggestions based on proximity and expertise.",
+            "testStrategy": "Test crew availability accuracy, verify assignment suggestions, validate skill matching, and confirm location-based recommendations."
+          },
+          {
+            "id": 3,
+            "title": "Build booking conflict detection",
+            "description": "Implement automatic conflict detection and resolution suggestions",
+            "status": "done",
+            "dependencies": [
+              "3.2"
+            ],
+            "details": "Develop conflict detection system that identifies scheduling conflicts and provides resolution suggestions. Include double-booking prevention and resource availability checking.",
+            "testStrategy": "Test conflict detection accuracy, verify resolution suggestions, validate double-booking prevention, and confirm resource availability checking."
+          },
+          {
+            "id": 4,
+            "title": "Create bulk operations functionality",
+            "description": "Add bulk editing capabilities for multiple bookings",
+            "status": "done",
+            "dependencies": [
+              "3.3"
+            ],
+            "details": "Implement bulk operations for managing multiple bookings simultaneously, including status updates, crew reassignment, and schedule modifications. Support 50+ bookings per operation.",
+            "testStrategy": "Test bulk operation performance with large datasets, verify operation accuracy, validate undo functionality, and confirm system stability."
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Phase 1: Analytics Visualization Dashboard",
+        "description": "Replace placeholder charts with real data visualization and interactive analytics",
+        "status": "in-progress",
+        "priority": "high",
+        "dependencies": [],
+        "details": "Build comprehensive analytics dashboard with real-time data visualization, interactive filtering, and automated reporting. Include revenue trends, customer satisfaction metrics, crew performance analytics, and booking pattern analysis.\n\nKey Requirements:\n- Revenue trend charts with multiple time periods\n- Customer satisfaction metrics dashboard\n- Crew performance analytics and benchmarking\n- Interactive filtering and drill-down\n- Export functionality (PDF, Excel, CSV)\n\nBusiness Impact: Data-driven decision making, business intelligence\nTimeline: Week 3 (5 days)",
+        "testStrategy": "Test chart loading performance under 3 seconds, verify data accuracy, validate interactive filtering, confirm export functionality, and ensure mobile responsiveness.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement revenue trend visualization",
+            "description": "Create interactive revenue charts with multiple time periods",
+            "status": "done",
+            "dependencies": [],
+            "details": "Build revenue trend charts with daily, weekly, and monthly views. Include comparison periods, growth rate calculations, and drill-down capabilities for detailed analysis.",
+            "testStrategy": "Test chart accuracy with real revenue data, verify time period switching, validate comparison calculations, and confirm drill-down functionality."
+          },
+          {
+            "id": 2,
+            "title": "Build customer satisfaction metrics dashboard",
+            "description": "Create customer satisfaction analytics with trend analysis",
+            "status": "done",
+            "dependencies": [],
+            "details": "Develop customer satisfaction dashboard showing ratings trends, feedback analysis, and satisfaction drivers. Include segmentation by service type, crew, and time period.",
+            "testStrategy": "Test satisfaction calculation accuracy, verify trend analysis, validate segmentation functionality, and confirm feedback integration."
+          },
+          {
+            "id": 3,
+            "title": "Create crew performance analytics",
+            "description": "Build comprehensive crew performance tracking and benchmarking",
+            "status": "pending",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Implement crew performance analytics including efficiency metrics, customer ratings, job completion rates, and comparative benchmarking. Include individual and team performance views.",
+            "testStrategy": "Test performance calculation accuracy, verify benchmarking algorithms, validate individual vs team views, and confirm metric reliability."
+          },
+          {
+            "id": 4,
+            "title": "Build interactive filtering and export system",
+            "description": "Add advanced filtering, drill-down, and export capabilities",
+            "status": "pending",
+            "dependencies": [
+              "4.2",
+              "4.3"
+            ],
+            "details": "Implement interactive filtering system with date ranges, crew selection, service types, and custom segments. Include export functionality for PDF, Excel, and CSV formats.",
+            "testStrategy": "Test filtering performance and accuracy, verify export format quality, validate custom segment creation, and confirm filter combination logic."
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Phase 2: Route Optimization System",
+        "description": "Implement intelligent routing and crew assignment based on location and traffic",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "details": "Build route optimization system using Google Maps API for intelligent crew assignment, real-time traffic consideration, and multi-stop optimization. Target 20% reduction in travel time and improved crew efficiency.\n\nKey Requirements:\n- Google Maps API integration\n- Automatic crew assignment by location\n- Real-time traffic consideration\n- Multi-stop route optimization\n- Navigation integration with crew app\n\nBusiness Impact: +20% crew efficiency, reduced travel costs\nTimeline: Week 4-5 (8 days)",
+        "testStrategy": "Test route optimization accuracy, verify traffic integration, validate crew assignment logic, measure travel time improvements, and confirm navigation integration.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Integrate Google Maps API for routing",
+            "description": "Set up Google Maps integration for route calculation and optimization",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Integrate Google Maps API for route calculation, distance matrix, and real-time traffic data. Include API key management, rate limiting, and error handling.",
+            "testStrategy": "Test API integration reliability, verify route accuracy, validate traffic data integration, and confirm error handling robustness."
+          },
+          {
+            "id": 2,
+            "title": "Build automatic crew assignment algorithm",
+            "description": "Create intelligent crew assignment based on location, skills, and availability",
+            "status": "pending",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Develop crew assignment algorithm considering location proximity (5-mile radius), skill matching, availability, and workload balancing. Include manual override capabilities.",
+            "testStrategy": "Test assignment accuracy and fairness, verify skill matching logic, validate proximity calculations, and confirm override functionality."
+          },
+          {
+            "id": 3,
+            "title": "Implement real-time traffic optimization",
+            "description": "Add dynamic route adjustment based on current traffic conditions",
+            "status": "pending",
+            "dependencies": [
+              "5.2"
+            ],
+            "details": "Create real-time traffic monitoring and route adjustment system that automatically updates routes based on current conditions and provides alternative suggestions.",
+            "testStrategy": "Test traffic data accuracy, verify route adjustment timing, validate alternative route suggestions, and confirm real-time update reliability."
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Phase 2: In-App Communication System",
+        "description": "Build real-time communication platform for admin, crew, and customers",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "details": "Create comprehensive communication system with real-time chat, emergency protocols, file sharing, and message history. Target under 2-second message latency and 30-second emergency alert delivery.\n\nKey Requirements:\n- WebSocket-based real-time chat\n- Emergency contact protocols\n- Job-specific communication threads\n- File sharing capabilities\n- Offline message queuing\n\nBusiness Impact: Faster issue resolution, improved service quality\nTimeline: Week 5-6 (8 days)",
+        "testStrategy": "Test message delivery speed and reliability, verify emergency alert functionality, validate file sharing capabilities, confirm chat history preservation, and ensure offline message queuing.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Build real-time chat infrastructure",
+            "description": "Create WebSocket-based chat system for instant messaging",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Implement real-time chat infrastructure using WebSockets for instant messaging between admin, crew, and customers. Include message delivery confirmations and read receipts.",
+            "testStrategy": "Test message delivery speed under 2 seconds, verify delivery confirmations, validate read receipts, and confirm connection stability."
+          },
+          {
+            "id": 2,
+            "title": "Implement emergency contact protocols",
+            "description": "Create emergency alert system with escalation procedures",
+            "status": "pending",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Develop emergency contact system with immediate alert distribution, escalation procedures, and priority routing. Include location sharing and emergency contact integration.",
+            "testStrategy": "Test emergency alert delivery within 30 seconds, verify escalation procedures, validate location sharing accuracy, and confirm priority routing."
+          },
+          {
+            "id": 3,
+            "title": "Add job-specific communication threads",
+            "description": "Create organized communication threads for each job",
+            "status": "pending",
+            "dependencies": [
+              "6.2"
+            ],
+            "details": "Implement job-specific communication threads that organize messages by job, preserve history, and include relevant participants automatically. Add search and filtering capabilities.",
+            "testStrategy": "Test thread organization accuracy, verify history preservation, validate participant management, and confirm search functionality."
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Phase 2: Customer Self-Service Portal",
+        "description": "Build comprehensive customer portal for self-service booking and account management",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "details": "Create customer self-service portal with login, service history, one-click rebooking, and preference management. Target 40% reduction in admin support requests and 15% improvement in booking conversion through AI recommendations.\n\nKey Requirements:\n- Customer authentication and profiles\n- Service history with photo galleries\n- One-click rebooking system\n- Schedule modification capabilities\n- AI-powered recommendations\n\nBusiness Impact: +35% repeat bookings, reduced admin workload\nTimeline: Week 6 (5 days)",
+        "testStrategy": "Test portal functionality and performance, verify AI recommendation accuracy, validate rebooking process speed, confirm preference management, and measure support request reduction.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Build customer authentication and profile system",
+            "description": "Create secure customer login and profile management",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Implement customer authentication system with secure login, password reset, and profile management. Include two-factor authentication option and account security features.",
+            "testStrategy": "Test authentication security, verify password reset functionality, validate profile management, and confirm two-factor authentication."
+          },
+          {
+            "id": 2,
+            "title": "Create service history and photo gallery",
+            "description": "Build comprehensive service history with photos and notes",
+            "status": "pending",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "Develop service history interface showing past bookings, photos, crew notes, and service ratings. Include filtering, search, and detailed service summaries.",
+            "testStrategy": "Test history accuracy and completeness, verify photo gallery functionality, validate filtering and search, and confirm service detail display."
+          },
+          {
+            "id": 3,
+            "title": "Implement one-click rebooking system",
+            "description": "Add streamlined rebooking with preference memory",
+            "status": "pending",
+            "dependencies": [
+              "7.2"
+            ],
+            "details": "Create one-click rebooking system that remembers customer preferences, suggests optimal scheduling, and completes booking in under 60 seconds. Include preference customization options.",
+            "testStrategy": "Test rebooking speed under 60 seconds, verify preference memory accuracy, validate scheduling suggestions, and confirm customization options."
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Phase 3: Dynamic Pricing Engine",
+        "description": "Implement AI-powered dynamic pricing based on demand, seasonality, and market conditions",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": [
+          5,
+          6,
+          7
+        ],
+        "details": "Build sophisticated dynamic pricing engine with demand-based algorithms, A/B testing framework, and real-time optimization. Target 15-25% revenue increase while maintaining 80%+ customer acceptance rate.\n\nKey Requirements:\n- Demand-based pricing algorithms\n- Seasonal and time-based adjustments\n- A/B testing framework\n- Customer segment pricing\n- Pricing transparency features\n\nBusiness Impact: +15-25% revenue increase through optimized pricing\nTimeline: Week 7-8 (10 days)",
+        "testStrategy": "Test pricing algorithm accuracy, verify A/B testing statistical significance, validate revenue impact measurement, confirm customer acceptance tracking, and ensure pricing transparency.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Build demand-based pricing algorithms",
+            "description": "Create pricing algorithms based on market demand analysis",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Develop demand-based pricing algorithms that analyze booking patterns, seasonal trends, and market conditions to optimize pricing in real-time. Include demand forecasting and price elasticity analysis.",
+            "testStrategy": "Test algorithm accuracy with historical data, verify demand forecasting reliability, validate price elasticity calculations, and confirm real-time optimization."
+          },
+          {
+            "id": 2,
+            "title": "Implement seasonal and time-based adjustments",
+            "description": "Add automated pricing adjustments for seasons and peak times",
+            "status": "pending",
+            "dependencies": [
+              "8.1"
+            ],
+            "details": "Create seasonal and time-based pricing adjustments that automatically modify prices based on historical patterns, holidays, and peak demand periods. Include manual override capabilities.",
+            "testStrategy": "Test seasonal adjustment accuracy, verify time-based pricing changes, validate holiday pricing, and confirm manual override functionality."
+          },
+          {
+            "id": 3,
+            "title": "Build A/B testing framework for pricing",
+            "description": "Create systematic A/B testing system for pricing strategies",
+            "status": "pending",
+            "dependencies": [
+              "8.2"
+            ],
+            "details": "Implement A/B testing framework for pricing strategies with statistical significance testing, conversion tracking, and automated winner selection. Include test design and analysis tools.",
+            "testStrategy": "Test A/B framework reliability, verify statistical calculations, validate conversion tracking accuracy, and confirm automated winner selection."
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Phase 3: Predictive Analytics Platform",
+        "description": "Build advanced predictive analytics for churn prevention, demand forecasting, and quality prediction",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": [
+          5,
+          6,
+          7
+        ],
+        "details": "Create predictive analytics platform with machine learning models for customer churn prediction (85% accuracy), demand forecasting (25% overstaffing reduction), and quality issue prevention (90% prevention rate).\n\nKey Requirements:\n- Customer churn prediction model\n- Demand forecasting system\n- Quality issue prediction algorithms\n- Inventory demand prediction\n- Continuous learning and model improvement\n\nBusiness Impact: Reduced churn, optimized operations, proactive quality management\nTimeline: Week 8-9 (8 days)",
+        "testStrategy": "Test model accuracy and reliability, verify prediction timing and relevance, validate intervention effectiveness, confirm continuous learning capabilities, and measure business impact.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Build customer churn prediction model",
+            "description": "Create ML model to predict customer churn with intervention triggers",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Develop machine learning model for customer churn prediction with 85% accuracy over 30-day horizon. Include intervention triggers, retention strategies, and success tracking.",
+            "testStrategy": "Test model accuracy with historical data, verify prediction timing, validate intervention triggers, and confirm retention strategy effectiveness."
+          },
+          {
+            "id": 2,
+            "title": "Implement demand forecasting system",
+            "description": "Create demand prediction for optimal crew scheduling and capacity planning",
+            "status": "pending",
+            "dependencies": [
+              "9.1"
+            ],
+            "details": "Build demand forecasting system that predicts booking volume, seasonal patterns, and capacity requirements. Target 25% reduction in overstaffing through accurate predictions.",
+            "testStrategy": "Test forecasting accuracy across different time horizons, verify seasonal pattern recognition, validate capacity recommendations, and measure staffing optimization."
+          },
+          {
+            "id": 3,
+            "title": "Build quality issue prediction algorithms",
+            "description": "Create predictive system for service quality issues and prevention",
+            "status": "pending",
+            "dependencies": [
+              "9.2"
+            ],
+            "details": "Develop quality prediction algorithms that identify potential service issues before they occur, enabling proactive intervention. Target 90% prevention rate for predicted issues.",
+            "testStrategy": "Test quality prediction accuracy, verify intervention effectiveness, validate prevention rate achievement, and confirm proactive alert system."
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Phase 3: Multi-Location Management System",
+        "description": "Build comprehensive multi-location support for geographic expansion",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": [
+          8,
+          9
+        ],
+        "details": "Create multi-location management system supporting unlimited service areas with location-specific settings, crew assignment, pricing, and analytics. Enable geographic expansion with centralized control and local management.\n\nKey Requirements:\n- Service area management with boundaries\n- Location-based crew assignment\n- Regional pricing and availability\n- Multi-location analytics\n- Centralized control with local permissions\n\nBusiness Impact: Market expansion opportunities, scalable operations\nTimeline: Week 9-10 (8 days)",
+        "testStrategy": "Test location management functionality, verify geographic boundaries, validate location-specific settings, confirm crew assignment accuracy, and ensure analytics separation.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Build service area management system",
+            "description": "Create geographic boundary management with service area definitions",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Implement service area management with geographic boundaries, coverage maps, and service availability by location. Include boundary visualization and overlap detection.",
+            "testStrategy": "Test boundary accuracy and visualization, verify coverage map functionality, validate service availability logic, and confirm overlap detection."
+          },
+          {
+            "id": 2,
+            "title": "Implement location-based crew assignment",
+            "description": "Add automatic crew assignment respecting location boundaries",
+            "status": "pending",
+            "dependencies": [
+              "10.1"
+            ],
+            "details": "Create location-based crew assignment system that automatically assigns crew within their designated service areas, considers travel distances, and optimizes resource allocation.",
+            "testStrategy": "Test location boundary respect, verify crew assignment accuracy, validate travel distance calculations, and confirm resource optimization."
+          },
+          {
+            "id": 3,
+            "title": "Build regional pricing and availability configuration",
+            "description": "Add location-specific pricing, services, and availability settings",
+            "status": "pending",
+            "dependencies": [
+              "10.2"
+            ],
+            "details": "Implement regional configuration system for location-specific pricing, service offerings, availability schedules, and operational parameters. Include inheritance and override capabilities.",
+            "testStrategy": "Test regional configuration accuracy, verify pricing application, validate service availability, and confirm inheritance and override logic."
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Phase 4: Advanced Reporting and Business Intelligence",
+        "description": "Build enterprise-grade reporting system with custom report builder and BI integrations",
+        "status": "pending",
+        "priority": "low",
+        "dependencies": [
+          8,
+          9,
+          10
+        ],
+        "details": "Create advanced reporting and business intelligence platform with custom report builder, automated scheduling, and external BI tool integrations. Target enterprise customer acquisition and investor readiness.\n\nKey Requirements:\n- Custom report builder interface\n- Advanced data export capabilities\n- Automated report scheduling\n- BI tool integrations (Tableau, Power BI)\n- Enterprise security and compliance\n\nBusiness Impact: Enterprise market penetration, investor readiness\nTimeline: Week 11-12 (10 days)",
+        "testStrategy": "Test report builder functionality, verify data export accuracy, validate automation reliability, confirm BI integrations, and ensure enterprise security compliance.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Build custom report builder interface",
+            "description": "Create drag-and-drop report builder for non-technical users",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Develop intuitive drag-and-drop report builder that allows users to create custom reports without technical knowledge. Include data source selection, visualization options, and formatting tools.",
+            "testStrategy": "Test report builder usability, verify drag-and-drop functionality, validate visualization options, and confirm formatting capabilities."
+          },
+          {
+            "id": 2,
+            "title": "Implement advanced data export capabilities",
+            "description": "Add comprehensive export functionality for multiple formats and APIs",
+            "status": "pending",
+            "dependencies": [
+              "11.1"
+            ],
+            "details": "Create advanced export system supporting CSV, Excel, PDF formats and API endpoints. Include large dataset handling, export scheduling, and delivery options.",
+            "testStrategy": "Test export accuracy and performance, verify format compatibility, validate large dataset handling, and confirm scheduling reliability."
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Phase 4: Native Mobile Applications",
+        "description": "Build React Native mobile apps for iOS and Android with offline capabilities",
+        "status": "pending",
+        "priority": "low",
+        "dependencies": [
+          8,
+          9,
+          10
+        ],
+        "details": "Develop native mobile applications using React Native for iOS and Android platforms. Include offline functionality, push notifications, camera integration, and biometric authentication. Target 4.5+ app store rating.\n\nKey Requirements:\n- React Native development setup\n- Offline functionality with sync\n- Push notification system\n- Camera and photo editing\n- Biometric authentication\n- App store publication\n\nBusiness Impact: Better user experience, competitive positioning\nTimeline: Week 13-16 (20 days)",
+        "testStrategy": "Test app performance and stability, verify offline functionality, validate push notifications, confirm camera integration, ensure biometric authentication, and measure app store ratings.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up React Native development environment",
+            "description": "Configure React Native project structure and development tools",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Set up React Native project with proper architecture, navigation, state management, and development tools. Include code sharing between iOS and Android platforms.",
+            "testStrategy": "Test development environment setup, verify code compilation, validate navigation functionality, and confirm cross-platform compatibility."
+          },
+          {
+            "id": 2,
+            "title": "Implement offline functionality with data synchronization",
+            "description": "Add offline capability with automatic sync when connection restored",
+            "status": "pending",
+            "dependencies": [
+              "12.1"
+            ],
+            "details": "Create offline functionality that maintains full crew workflow capability without internet connection. Include local data storage, conflict resolution, and automatic synchronization.",
+            "testStrategy": "Test offline functionality completeness, verify data synchronization accuracy, validate conflict resolution, and confirm automatic sync reliability."
+          },
+          {
+            "id": 3,
+            "title": "Build push notification system",
+            "description": "Add native push notifications for real-time updates and alerts",
+            "status": "pending",
+            "dependencies": [
+              "12.2"
+            ],
+            "details": "Implement native push notification system for job updates, schedule changes, and emergency alerts. Include notification preferences, deep linking, and delivery tracking.",
+            "testStrategy": "Test push notification delivery and reliability, verify deep linking functionality, validate notification preferences, and confirm delivery tracking."
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "version": "1.0.0",
+      "created": "2025-01-27T00:00:00.000Z",
+      "lastModified": "2025-01-27T00:00:00.000Z",
+      "totalTasks": 12,
+      "totalSubtasks": 47,
+      "description": "Tasks for master context",
+      "updated": "2025-08-17T19:07:27.443Z"
+    }
+  }
+}

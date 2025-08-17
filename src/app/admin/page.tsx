@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { AdminLogin } from "@/components/admin/admin-login";
-import { AdminDashboard } from "@/components/admin/admin-dashboard";
+import { CompleteAdminDashboard } from "@/components/admin/complete-admin-dashboard";
 import { Loader2 } from "lucide-react";
 
 export default function AdminPage() {
@@ -50,5 +50,5 @@ export default function AdminPage() {
     return <AdminLogin onLoginSuccess={handleLoginSuccess} />;
   }
 
-  return <AdminDashboard onLogout={handleLogout} />;
+  return <CompleteAdminDashboard onLogout={handleLogout} />;
 }

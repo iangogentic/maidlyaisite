@@ -23,6 +23,10 @@ export const siteConfig = {
       href: "/pricing",
     },
     {
+      title: "Book Now",
+      href: "/booking",
+    },
+    {
       title: "Careers",
       href: "/careers",
     },

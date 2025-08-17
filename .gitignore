@@ -166,3 +166,13 @@ temp/
 **/public/sw.js.map
 **/public/workbox-*.js.map
 **/public/worker-*.js.map
+
+dev-debug.log
+# Environment variables
+.env
+.vscode
+# OS specific
+
+# Task files
+# tasks.json
+# tasks/ 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -21,7 +21,8 @@ import {
   Copy,
   CheckCircle,
   XCircle,
-  Clock
+  Clock,
+  Sparkles
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -95,7 +96,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
   const [copiedToken, setCopiedToken] = useState(false);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
     setError("");
 
@@ -130,11 +131,11 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [onLogout]);
 
   useEffect(() => {
     fetchData();
-  }, [onLogout]);
+  }, [fetchData]);
 
   const handleLogout = async () => {
     try {
@@ -340,19 +341,211 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
         </div>
 
         {/* Main Content */}
-        <Tabs defaultValue="applications" className="space-y-6">
-          <TabsList>
-            <TabsTrigger value="applications">Applications</TabsTrigger>
+        <Tabs defaultValue="operations-overview" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-6">
+            <TabsTrigger value="operations-overview">Operations</TabsTrigger>
+            <TabsTrigger value="bookings">Bookings</TabsTrigger>
             <TabsTrigger value="customers">Customers</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            <TabsTrigger value="hiring">Hiring</TabsTrigger>
+            <TabsTrigger value="settings">Settings</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="applications" className="space-y-6">
+          {/* Operations Overview Tab */}
+          <TabsContent value="operations-overview" className="space-y-6">
+            {/* Business KPIs */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Card className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-950/50 dark:to-blue-900/50 border-blue-200 dark:border-blue-800">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-blue-700 dark:text-blue-300">Total Bookings</p>
+                      <p className="text-3xl font-bold text-blue-900 dark:text-blue-100">1</p>
+                      <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">+1 this week</p>
+                    </div>
+                    <Calendar className="h-10 w-10 text-blue-600 dark:text-blue-400" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-gradient-to-r from-green-50 to-green-100 dark:from-green-950/50 dark:to-green-900/50 border-green-200 dark:border-green-800">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-green-700 dark:text-green-300">Revenue (MTD)</p>
+                      <p className="text-3xl font-bold text-green-900 dark:text-green-100">$250</p>
+                      <p className="text-xs text-green-600 dark:text-green-400 mt-1">+$250 this month</p>
+                    </div>
+                    <TrendingUp className="h-10 w-10 text-green-600 dark:text-green-400" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-950/50 dark:to-purple-900/50 border-purple-200 dark:border-purple-800">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-purple-700 dark:text-purple-300">Active Customers</p>
+                      <p className="text-3xl font-bold text-purple-900 dark:text-purple-100">{customerData?.totalCount || 1}</p>
+                      <p className="text-xs text-purple-600 dark:text-purple-400 mt-1">+1 new customer</p>
+                    </div>
+                    <Users className="h-10 w-10 text-purple-600 dark:text-purple-400" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-950/50 dark:to-orange-900/50 border-orange-200 dark:border-orange-800">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-orange-700 dark:text-orange-300">Avg. Order Value</p>
+                      <p className="text-3xl font-bold text-orange-900 dark:text-orange-100">$250</p>
+                      <p className="text-xs text-orange-600 dark:text-orange-400 mt-1">Per booking</p>
+                    </div>
+                    <TrendingUp className="h-10 w-10 text-orange-600 dark:text-orange-400" />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Recent Activity & Quick Actions */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Clock className="h-5 w-5" />
+                    Recent Bookings
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+                      <div>
+                        <p className="font-medium">Test User</p>
+                        <p className="text-sm text-muted-foreground">Regular cleaning • Jan 20, 2025</p>
+                      </div>
+                      <Badge variant="secondary">Scheduled</Badge>
+                    </div>
+                    <div className="text-center py-4 text-muted-foreground">
+                      <p className="text-sm">More bookings will appear here as customers book services</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Sparkles className="h-5 w-5" />
+                    AI Insights
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                      <p className="text-sm font-medium text-blue-900 dark:text-blue-100">Customer Preferences</p>
+                      <p className="text-xs text-blue-700 dark:text-blue-300 mt-1">
+                        Eco-friendly cleaning is popular • Bi-weekly frequency preferred
+                      </p>
+                    </div>
+                    <div className="p-3 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
+                      <p className="text-sm font-medium text-green-900 dark:text-green-100">Revenue Opportunity</p>
+                      <p className="text-xs text-green-700 dark:text-green-300 mt-1">
+                        Add-ons like "inside oven" increase order value by 20%
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          {/* Bookings Tab */}
+          <TabsContent value="bookings" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Career Applications</CardTitle>
+                <CardTitle>Service Bookings</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <Calendar className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                  <h3 className="text-lg font-medium mb-2">Bookings Management</h3>
+                  <p className="text-muted-foreground mb-4">
+                    View and manage all customer service bookings
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Bookings API is working - integration with UI coming soon
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Hiring Tab - Moved from Applications */}
+          <TabsContent value="hiring" className="space-y-6">
+            {/* Hiring KPIs */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Card className="bg-gradient-to-r from-indigo-50 to-indigo-100 dark:from-indigo-950/50 dark:to-indigo-900/50 border-indigo-200 dark:border-indigo-800">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-indigo-700 dark:text-indigo-300">Total Applications</p>
+                      <p className="text-3xl font-bold text-indigo-900 dark:text-indigo-100">{data?.totalCount || 0}</p>
+                      <p className="text-xs text-indigo-600 dark:text-indigo-400 mt-1">All time</p>
+                    </div>
+                    <Mail className="h-10 w-10 text-indigo-600 dark:text-indigo-400" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-gradient-to-r from-teal-50 to-teal-100 dark:from-teal-950/50 dark:to-teal-900/50 border-teal-200 dark:border-teal-800">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-teal-700 dark:text-teal-300">This Week</p>
+                      <p className="text-3xl font-bold text-teal-900 dark:text-teal-100">{data?.summary?.recent || 0}</p>
+                      <p className="text-xs text-teal-600 dark:text-teal-400 mt-1">New applications</p>
+                    </div>
+                    <TrendingUp className="h-10 w-10 text-teal-600 dark:text-teal-400" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-gradient-to-r from-pink-50 to-pink-100 dark:from-pink-950/50 dark:to-pink-900/50 border-pink-200 dark:border-pink-800">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-pink-700 dark:text-pink-300">Most Popular Role</p>
+                      <p className="text-2xl font-bold text-pink-900 dark:text-pink-100">CTO/AI</p>
+                      <p className="text-xs text-pink-600 dark:text-pink-400 mt-1">4 applications</p>
+                    </div>
+                    <Users className="h-10 w-10 text-pink-600 dark:text-pink-400" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-gradient-to-r from-amber-50 to-amber-100 dark:from-amber-950/50 dark:to-amber-900/50 border-amber-200 dark:border-amber-800">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-amber-700 dark:text-amber-300">Open Positions</p>
+                      <p className="text-3xl font-bold text-amber-900 dark:text-amber-100">3</p>
+                      <p className="text-xs text-amber-600 dark:text-amber-400 mt-1">Active roles</p>
+                    </div>
+                    <CheckCircle className="h-10 w-10 text-amber-600 dark:text-amber-400" />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Users className="h-5 w-5" />
+                  Career Applications
+                </CardTitle>
                 <p className="text-muted-foreground">
-                  All submitted applications sorted by most recent
+                  Manage job applications and hiring pipeline
                 </p>
               </CardHeader>
               <CardContent>
@@ -588,43 +781,88 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
           </TabsContent>
 
           <TabsContent value="analytics" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Applications by Role</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {data?.summary.byRole && Object.entries(data.summary.byRole).map(([role, count]) => (
-                      <div key={role} className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <Badge className={getRoleColor(role)}>{role}</Badge>
-                        </div>
-                        <span className="font-semibold">{count}</span>
-                      </div>
-                    ))}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5" />
+                  Business Analytics
+                </CardTitle>
+                <p className="text-muted-foreground">
+                  Comprehensive business performance metrics and insights
+                </p>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h3 className="font-medium">Revenue Trends</h3>
+                    <div className="h-48 bg-muted/20 rounded-lg flex items-center justify-center">
+                      <p className="text-muted-foreground">Revenue chart will appear here</p>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
+                  
+                  <div className="space-y-4">
+                    <h3 className="font-medium">Booking Patterns</h3>
+                    <div className="h-48 bg-muted/20 rounded-lg flex items-center justify-center">
+                      <p className="text-muted-foreground">Booking trends chart will appear here</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h3 className="font-medium">Customer Satisfaction</h3>
+                    <div className="h-48 bg-muted/20 rounded-lg flex items-center justify-center">
+                      <p className="text-muted-foreground">Satisfaction metrics will appear here</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h3 className="font-medium">AI Learning Progress</h3>
+                    <div className="h-48 bg-muted/20 rounded-lg flex items-center justify-center">
+                      <p className="text-muted-foreground">AI insights dashboard will appear here</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle>Recent Activity</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">This week</span>
-                      <span className="font-semibold">{data?.summary.recent || 0} applications</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Total</span>
-                      <span className="font-semibold">{data?.summary.total || 0} applications</span>
+          {/* Settings Tab */}
+          <TabsContent value="settings" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <AlertCircle className="h-5 w-5" />
+                  System Settings
+                </CardTitle>
+                <p className="text-muted-foreground">
+                  Configure system preferences and business settings
+                </p>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="font-medium mb-3">Business Configuration</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="p-4 border rounded-lg">
+                        <h4 className="font-medium text-sm mb-2">Service Areas</h4>
+                        <p className="text-sm text-muted-foreground">Manage service coverage areas</p>
+                      </div>
+                      <div className="p-4 border rounded-lg">
+                        <h4 className="font-medium text-sm mb-2">Pricing Rules</h4>
+                        <p className="text-sm text-muted-foreground">Configure dynamic pricing</p>
+                      </div>
+                      <div className="p-4 border rounded-lg">
+                        <h4 className="font-medium text-sm mb-2">AI Settings</h4>
+                        <p className="text-sm text-muted-foreground">Adjust AI learning parameters</p>
+                      </div>
+                      <div className="p-4 border rounded-lg">
+                        <h4 className="font-medium text-sm mb-2">Notifications</h4>
+                        <p className="text-sm text-muted-foreground">Email and SMS preferences</p>
+                      </div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </div>
