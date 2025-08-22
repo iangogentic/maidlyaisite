@@ -20,12 +20,28 @@ const getDatabaseUrl = () => {
 };
 
 let sql: any;
+let tablesInitialized = false;
+
 try {
   sql = neon(getDatabaseUrl());
 } catch (error) {
   console.error('Database connection error:', error);
   // Fallback to direct URL
   sql = neon('postgresql://neondb_owner:npg_2AigG5BtfpkX@ep-little-brook-af8rp8sj-pooler.c-2.us-west-2.aws.neon.tech/neondb?sslmode=require');
+}
+
+// Initialize tables once at startup
+async function ensureTablesInitialized() {
+  if (tablesInitialized) return;
+  
+  try {
+    await initializeTables();
+    tablesInitialized = true;
+    console.log('Database tables initialized successfully');
+  } catch (error) {
+    console.error('Failed to initialize database tables:', error);
+    // Don't set tablesInitialized = true so it will retry next time
+  }
 }
 
 export interface CareerApplication {
@@ -505,7 +521,7 @@ function generateAcceptanceToken(): string {
 export const careerApplications = {
   create: async (application: Omit<CareerApplication, 'id' | 'created_at' | 'updated_at'>) => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const acceptanceToken = generateAcceptanceToken();
       
@@ -537,7 +553,7 @@ export const careerApplications = {
 
   getAll: async (): Promise<CareerApplication[]> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM career_applications 
@@ -553,7 +569,7 @@ export const careerApplications = {
 
   getById: async (id: number): Promise<CareerApplication | null> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM career_applications WHERE id = ${id};
@@ -568,7 +584,7 @@ export const careerApplications = {
 
   getByEmail: async (email: string): Promise<CareerApplication[]> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM career_applications 
@@ -585,7 +601,7 @@ export const careerApplications = {
 
   count: async (): Promise<number> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT COUNT(*) as count FROM career_applications;
@@ -600,7 +616,7 @@ export const careerApplications = {
 
   getByToken: async (token: string): Promise<CareerApplication | null> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM career_applications WHERE acceptance_token = ${token};
@@ -615,7 +631,7 @@ export const careerApplications = {
 
   updateStatus: async (id: number, status: 'pending' | 'accepted' | 'rejected'): Promise<boolean> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         UPDATE career_applications 
@@ -635,7 +651,7 @@ export const careerApplications = {
 export const adminSessions = {
   create: async (sessionToken: string, expiresAt: Date) => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         INSERT INTO admin_sessions (session_token, expires_at) 
@@ -652,7 +668,7 @@ export const adminSessions = {
 
   getByToken: async (token: string): Promise<AdminSession | null> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM admin_sessions 
@@ -668,7 +684,7 @@ export const adminSessions = {
 
   deleteExpired: async () => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         DELETE FROM admin_sessions 
@@ -684,7 +700,7 @@ export const adminSessions = {
 
   deleteByToken: async (token: string) => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         DELETE FROM admin_sessions 
@@ -703,7 +719,7 @@ export const adminSessions = {
 export const acceptanceDocuments = {
   create: async (applicationId: number, documentType: string, documentData: any) => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         INSERT INTO acceptance_documents (application_id, document_type, document_data) 
@@ -720,7 +736,7 @@ export const acceptanceDocuments = {
 
   getByApplicationId: async (applicationId: number): Promise<AcceptanceDocument[]> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM acceptance_documents 
@@ -740,7 +756,7 @@ export const acceptanceDocuments = {
 
   markSigned: async (id: number): Promise<boolean> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         UPDATE acceptance_documents 
@@ -760,7 +776,7 @@ export const acceptanceDocuments = {
 export const customerInterests = {
   create: async (interest: Omit<CustomerInterest, 'id' | 'created_at' | 'updated_at'>) => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         INSERT INTO customer_interests (
@@ -793,7 +809,7 @@ export const customerInterests = {
 
   getAll: async (): Promise<CustomerInterest[]> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM customer_interests 
@@ -809,7 +825,7 @@ export const customerInterests = {
 
   getById: async (id: number): Promise<CustomerInterest | null> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM customer_interests WHERE id = ${id};
@@ -824,7 +840,7 @@ export const customerInterests = {
 
   count: async (): Promise<number> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT COUNT(*) as count FROM customer_interests;
@@ -842,7 +858,7 @@ export const customerInterests = {
 export const bookings = {
   create: async (booking: Omit<Booking, 'id' | 'created_at' | 'updated_at'>) => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         INSERT INTO bookings (
@@ -871,7 +887,7 @@ export const bookings = {
 
   getAll: async (): Promise<Booking[]> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM bookings 
@@ -891,7 +907,7 @@ export const bookings = {
 
   getById: async (id: number): Promise<Booking | null> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM bookings WHERE id = ${id};
@@ -915,7 +931,7 @@ export const bookings = {
 
   getByEmail: async (email: string): Promise<Booking[]> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM bookings 
@@ -936,7 +952,7 @@ export const bookings = {
 
   updateStatus: async (id: number, status: Booking['status']): Promise<boolean> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         UPDATE bookings 
@@ -953,7 +969,7 @@ export const bookings = {
 
   updatePhotos: async (id: number, photos: any[]): Promise<boolean> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         UPDATE bookings 
@@ -970,7 +986,7 @@ export const bookings = {
 
   getTodaysJobs: async (): Promise<Booking[]> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM bookings 
@@ -995,7 +1011,7 @@ export const bookings = {
 export const serviceNotes = {
   create: async (note: Omit<ServiceNote, 'id' | 'created_at'>) => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         INSERT INTO service_notes (booking_id, note_type, content, confidence_score, created_by)
@@ -1012,7 +1028,7 @@ export const serviceNotes = {
 
   getByBookingId: async (bookingId: number): Promise<ServiceNote[]> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM service_notes 
@@ -1032,7 +1048,7 @@ export const serviceNotes = {
 export const customerProfiles = {
   createOrUpdate: async (profile: Omit<CustomerProfile, 'id' | 'created_at' | 'updated_at'>) => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         INSERT INTO customer_profiles (
@@ -1066,7 +1082,7 @@ export const customerProfiles = {
 
   getByEmail: async (email: string): Promise<CustomerProfile | null> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM customer_profiles WHERE email = ${email};
@@ -1093,7 +1109,7 @@ export const customerProfiles = {
 export const crewMembers = {
   create: async (member: Omit<CrewMember, 'id' | 'created_at' | 'updated_at'>) => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         INSERT INTO crew_members (
@@ -1116,7 +1132,7 @@ export const crewMembers = {
 
   getAll: async (): Promise<CrewMember[]> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM crew_members 
@@ -1136,7 +1152,7 @@ export const crewMembers = {
 
   getById: async (id: number): Promise<CrewMember | null> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM crew_members WHERE id = ${id};
@@ -1160,7 +1176,7 @@ export const crewMembers = {
 
   updateStatus: async (id: number, status: CrewMember['status']): Promise<boolean> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         UPDATE crew_members 
@@ -1180,7 +1196,7 @@ export const crewMembers = {
 export const timeEntries = {
   create: async (entry: Omit<TimeEntry, 'id' | 'created_at' | 'updated_at'>) => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         INSERT INTO time_entries (
@@ -1206,7 +1222,7 @@ export const timeEntries = {
 
   getByCrewMember: async (crewMemberId: number, startDate?: string, endDate?: string): Promise<TimeEntry[]> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       if (startDate && endDate) {
         const result = await sql`
@@ -1245,7 +1261,7 @@ export const timeEntries = {
 
   getAll: async (): Promise<TimeEntry[]> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM time_entries 
@@ -1266,7 +1282,7 @@ export const timeEntries = {
 
   clockIn: async (crewMemberId: number, location: TimeEntry['clock_in_location'], bookingId?: number): Promise<number | null> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         INSERT INTO time_entries (
@@ -1288,7 +1304,7 @@ export const timeEntries = {
 
   clockOut: async (entryId: number, location: TimeEntry['clock_out_location'], notes?: string): Promise<boolean> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       // Get the entry to calculate hours
       const entry = await sql`
@@ -1332,7 +1348,7 @@ export const timeEntries = {
 export const crewLocations = {
   create: async (location: Omit<CrewLocation, 'id' | 'created_at'>) => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         INSERT INTO crew_locations (
@@ -1353,7 +1369,7 @@ export const crewLocations = {
 
   getLatestByCrewMember: async (crewMemberId: number): Promise<CrewLocation | null> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM crew_locations 
@@ -1371,7 +1387,7 @@ export const crewLocations = {
 
   getAllCurrent: async (): Promise<CrewLocation[]> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT DISTINCT ON (crew_member_id) *
@@ -1393,7 +1409,7 @@ export const customerPreferences = {
   // Get preferences for a customer by email
   getByEmail: async (email: string): Promise<CustomerPreferences | null> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         SELECT * FROM customer_preferences 
@@ -1411,7 +1427,7 @@ export const customerPreferences = {
   // Create or update customer preferences
   upsert: async (preferences: Omit<CustomerPreferences, 'id' | 'created_at' | 'updated_at'>): Promise<CustomerPreferences | null> => {
     try {
-      await initializeTables();
+      await ensureTablesInitialized();
       
       const result = await sql`
         INSERT INTO customer_preferences (

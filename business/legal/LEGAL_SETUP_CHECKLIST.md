@@ -1,7 +1,11 @@
 # ✅ Legal Setup Checklist
-## What You Actually Need to Do for Maidly.ai
+## Quick Reference for Maidly.ai
 
-**This is your real action list - not fake documents**
+**⚠️ SUPERSEDED BY COMPREHENSIVE GUIDE ⚠️**
+
+**For complete implementation strategy, see:** [FINAL_LEGAL_IMPLEMENTATION_GUIDE.md](./FINAL_LEGAL_IMPLEMENTATION_GUIDE.md)
+
+**This checklist provides a quick overview - the comprehensive guide has all details, costs, and timeline.**
 
 ---
 
