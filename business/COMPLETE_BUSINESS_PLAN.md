@@ -35,7 +35,7 @@
 - **Bootstrap Round**: $100K convertible note (25% discount, 6% interest, 24 months)
 - **Series Seed**: $1-2M at $5-10M valuation after proving multi-market scalability
 
-**Team**: Board of Directors (Harrison Nguyen - Chairman, Tim Nguyen - CEO, Ian Greenberg - Board Member, 33.3% each) + Founding Partner Program for C-suite execution + Chief Maid for operations.
+**Team**: Board of Directors (Harrison Nguyen - Chairman, Tim Nguyen - CEO, Ian Greenberg - Board Member, 33.3% each) + Founding Partner Program for C-suite execution (COO, CMO, CTO, CFO, CAIO) + Chief Maid for operations.
 
 ---
 
@@ -150,10 +150,11 @@ Equity-first C-level positions for ambitious early-career professionals:
 - **Responsibilities**: Service delivery, crew training, quality standards, customer satisfaction
 
 ### Equity Distribution Summary
-- **Board Control**: 75-80% (maintains strategic control)
-- **Founding Partners**: 13-19% (operational execution)
-- **Chief Maid**: 2-3% (service delivery)
-- **Future Team/ESOP**: 3-5% (key hires, employee retention)
+- **Board Control**: 76% (maintains strategic control)
+- **Founding Partners**: 22.5% (5 C-level positions × 4.5% each)
+- **Chief Maid**: 1.0% (service delivery)
+- **Senior Developer**: 0.5% (technical execution)
+- **Future Team/ESOP**: Available from remaining equity pool
 
 ---
 

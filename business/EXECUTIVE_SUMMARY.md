@@ -116,13 +116,12 @@ Unlike traditional cleaning services that treat every home generically, Maidly.a
 
 ### Founding Partner Model
 The board maintains strategic control while bringing in operators through equity partnerships:
-- **COO Track**: Operations excellence leader (4-6% equity)
-- **CMO Track**: Growth and brand builder (3-4% equity)
-- **CTO Track**: Technical innovation driver (4-6% equity)
-- **CFO Track**: Financial strategy architect (2-3% equity)
-- **Chief Maid**: Crew operations leader (2-3% equity + hourly)
+- **5 C-Level Positions**: COO, CMO, CTO, CFO, CAIO (4.5% equity each)
+- **Chief Maid**: Operations leader (1.0% equity + hourly compensation)
+- **Senior Developer**: Technical contributor (0.5% equity)
+- **Total Team Equity**: 24.0% allocated for founding team execution
 
-This model attracts top talent through meaningful equity (total 15-20% for all partners) while the board maintains control (75-80%) and strategic direction.
+This model attracts top talent through meaningful equity (total 24% for all partners) while the board maintains control (76%) and strategic direction.
 
 ---
 
